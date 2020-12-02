@@ -1,0 +1,13 @@
+.left{
+	float: left;
+}
+
+.right{
+	float: right;
+}
+
+.bg-color{
+	background-color: rgba(0,0,0,0.1);
+	padding: 30px;
+	border-radius: 20px;
+}

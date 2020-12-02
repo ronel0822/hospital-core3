@@ -1,0 +1,93 @@
+<?php include VIEW . 'header.phtml'; ?>
+
+<div class="card">
+  <h5 class="card-header">Registration</h5>
+  <div class="card-body">
+  	<?php
+		if(isset($_SESSION['message'])){
+			?>
+				<div class="alert alert-<?=$_SESSION['status']?>">
+					<?= $_SESSION['message']?>
+				</div>
+			<?php
+			unset($_SESSION['message'],$_SESSION['status']);
+		}
+	?>
+	<div class="card left"  style="width: 28rem; margin-bottom: 1rem;">
+	  <div class="card-body">
+  		<div class="container bg-color left">
+  			<h3>Buyer Registration</h3>
+  			<form action="signingUp" method="POST">
+				<div class="form-group">
+					<label for="email" class="left">Email Adress:</label>
+					<input type="email" class="form-control" name="email" id="email">
+				</div>
+				<div class="form-group">
+					<label for="password" class="left">Password:</label>
+					<input type="password" class="form-control" name="password" id="password">
+				</div>
+				<div class="form-group">
+					<label for="firstname" class="left">First Name:</label>
+					<input type="text" class="form-control" name="firstname" id="firstname">
+				</div>
+				<div class="form-group">
+					<label for="meddlename" class="left">Middle Name:</label>
+					<input type="text" class="form-control" name="meddlename" id="meddlename">
+				</div>
+				<div class="form-group">
+					<label for="lastname" class="left">Last Name:</label>
+					<input type="text" class="form-control" name="lastname" id="lastname">
+				</div>
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" name="agreement" id="agreement" required>
+						<label class="form-check-label" for="agreement">By checking this you are agreed to our <a href="/home/tacBuyer" target="_blank">terms and conditions.</a></label>	
+					</div>
+					<div class="form-group">
+						<input type="submit" class="btn btn-success btn-block" name="buyerSubmit" value="SUBMIT">
+					</div>
+  			</form>
+		</div>
+		</div>
+	</div>
+
+	<div class="card right"  style="width: 28rem;">
+	  <div class="card-body">
+		<div class="container bg-color left">
+			<h3>Seller Registration</h3>
+  			<form action="signingUp" method="POST">
+				<div class="form-group">
+					<label for="email" class="left">Email Adress:</label>
+					<input type="email" class="form-control" name="email" id="email">
+				</div>
+				<div class="form-group">
+					<label for="password" class="left">Password:</label>
+					<input type="password" class="form-control" name="password" id="password">
+				</div>
+				<div class="form-group">
+					<label for="firstname" class="left">First Name:</label>
+					<input type="text" class="form-control" name="firstname" id="firstname">
+				</div>
+				<div class="form-group">
+					<label for="meddlename" class="left">Middle Name:</label>
+					<input type="text" class="form-control" name="meddlename" id="meddlename">
+				</div>
+				<div class="form-group">
+					<label for="lastname" class="left">Last Name:</label>
+					<input type="text" class="form-control" name="lastname" id="lastname">
+				</div>
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" name="agreement" id="agreement" required>
+						<label class="form-check-label" for="agreement">By checking this you are agreed to our <a href="/home/tacSeller" target="_blank">terms and conditions.</a></label>	
+					</div>
+					<div class="form-group">
+						<input type="submit" class="btn btn-success btn-block" name="sellerSubmit" value="SUBMIT">
+					</div>
+  			</form>
+		</div>
+	   </div>
+	</div>
+
+  </div>
+</div>
+
+<?php include VIEW . 'footer.phtml'; ?>
