@@ -1,0 +1,13 @@
+<?php include VIEW . 'header.phtml'; ?>
+<?php include VIEW . 'navigation.phtml'; ?>
+<h1>Dashboard</h1>
+
+<?php
+  foreach ($this->view_data['dataRecords1'] as $data) {
+    echo $data['drug_id']."<br>";
+  }
+  $drug12 = $this->view_data['dataRecords2'];
+  echo $drug12[0]['drug_name'];
+?>
+
+<?php include VIEW . 'footer.phtml'; ?>
