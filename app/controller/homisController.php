@@ -8,7 +8,7 @@ class homisController extends Controller{
 		$this->view('homis\dashboard',
 			[
 				'dataRecords1'=>$this->model->getAllDrug(),
-				'dataRecords2'=>$this->model->getDrugById(12)
+				'dataRecords2'=>$this->model->getDrugById(5)
 			]
 		);
 		$this->view->render();
