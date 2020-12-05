@@ -26,5 +26,55 @@
   <!-- Custom styles for this template-->
   <link href="/css/sb-admin-2.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script type="text/javascript">
+
+window.onload = function () {
+  var chart = new CanvasJS.Chart("chartContainer", {
+   
+    data: [              
+    {
+      
+      type: "column",
+      dataPoints: [
+        {
+         label: "No. of Drugs",  
+         y:
+         <?php
+            $totaDrugs = $this->view_data['dataRecords2'];
+                      echo $totaDrugs[0][0];
+         ?>  
+        },
+        {
+         label: "No. of Stocks", 
+         y: 
+         <?php
+            $totalStocks = $this->view_data['dataRecords3'];
+                      echo $totalStocks[0][0];
+         ?>  
+        },
+        {
+         label: "Transactions", 
+          y: 
+          <?php
+            $totaTransactions = $this->view_data['dataRecords4'];
+                      echo $totaTransactions[0][0];
+          ?>
+        },
+        { 
+          label: "No. of Payments",  
+          y: 
+          <?php
+            $totalPayments = $this->view_data['dataRecords5'];
+                      echo $totalPayments[0][0];
+          ?>  
+        }
+      ]
+    }
+    ]
+  });
+  chart.render();
+}
+</script>
   
 </head>

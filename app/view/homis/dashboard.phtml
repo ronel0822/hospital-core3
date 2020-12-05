@@ -9,63 +9,67 @@
   //echo $drug12[0]['drug_name'];
 ?>
 -->
-
-
-<div class="row">
-	<!-- DRUG NAMES -->
-	<div class="col-sm">
-		<div class="card rounded w-33.33 ml-3">
-			<p class="h2 d-flex justify-content-center"><b>Names</b></p>
-			<p class=" justify ml-5">
-				<?php
-  					foreach ($this->view_data['dataRecords1'] as $data) {
-    					echo $data['drug_name']."<br>";
-  					}
-				?>
-			</p>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm">
+				<div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+  						<div class="card-body">
+    						<h5 class="card-title d-flex justify-content-center">NO. OF DRUGS</h5>
+    						<p class="card-text h3 d-flex justify-content-center">
+    							<?php
+    								$totalDrugs = $this->view_data['dataRecords2'];
+    									echo $totalDrugs[0][0];
+    							?>
+    						</p>
+  						</div>
+				</div>
+			</div>
+			<div class="col-sm">
+				<div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+  						<div class="card-body">
+    						<h5 class="card-title d-flex justify-content-center">NO. OF STOCKS</h5>
+    						<p class="card-text h3 d-flex justify-content-center">
+    							<?php
+    								$totalStocksDrugs = $this->view_data['dataRecords3'];
+    									echo $totalStocksDrugs[0][0];
+    							?>
+    						</p>
+  						</div>
+				</div>
+			</div>
+			<div class="col-sm">
+				<div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+  						<div class="card-body">
+    						<h5 class="card-title d-flex justify-content-center">TRANSACTIONS</h5>
+    						<p class="card-text h3 d-flex justify-content-center">
+    							<?php
+    								$totaTransactions = $this->view_data['dataRecords4'];
+    									echo $totaTransactions[0][0];
+    							?>
+    						</p>
+  						</div>
+				</div>
+			</div>
+			<div class="col-sm">
+				<div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+  						<div class="card-body">
+    						<h5 class="card-title d-flex justify-content-center">NO. OF PAYMENTS</h5>
+    						<p class="card-text h3 d-flex justify-content-center">
+    							<?php
+    								$totalPayments = $this->view_data['dataRecords5'];
+    									echo $totalPayments[0][0];
+    							?>
+    						</p>
+  						</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	<!-- DRUG TYPES -->
-	<div class="col-sm">
-		<div class="card rounded w-33.33">
-			<p class="h2 d-flex justify-content-center"><b>Types</b></p>
-			<p class=" justify ml-5">
-				<?php
-					foreach ($this->view_data['dataRecords1'] as $data){
-						echo $data['drug_type']. "<br>";
-					}
-				?>
-			</p>
-		</div>
-	</div>
-	<!-- DRUG PRICES -->
-	<div class="col-sm">
-		<div class="card rounded w-33.33 mr-3">
-			<p class="h2 d-flex justify-content-center"><b>Prices</b></p>
-			<p class=" justify ml-5">
-				<?php
-					foreach ($this->view_data['dataRecords1'] as $data ) {
-						echo $data['drug_price']. "<br>";
-					}
-				?>
-			</p>
-		</div>
-	</div>
-	<!-- DRUG DESCRIPTIONS -->
-	<!-- <div class="col-sm">
-		<div class="card rounded w-33.33 mr-3">
-			<p class="h2 d-flex justify-content-center"><b>Descriptions</b></p>
-			<p class=" justify ml-5">
-				<?php
-					//foreach ($this->view_data['dataRecords1'] as $data ) {
-					//	echo $data['drug_description']. "<br>";
-					//}
-				?>
-			</p>
-		</div>
-	</div> -->
-</div>
-
-
+	<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+	
 
 <?php include VIEW . 'footer.phtml'; ?>
+
+
+
+
