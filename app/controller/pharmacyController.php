@@ -9,7 +9,7 @@ class pharmacyController extends Controller{
 		$this->view->render();
 	}
 
-	public function drugInfo($id){
+	public function drugInfo(){
 		$this->model('pharmacy');
 		$this->view('Pharmacy\drugList',['mainData'=>$this->model->getAllDrug()]);
 		$this->view->page_title = 'Drugs';
