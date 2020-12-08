@@ -1,13 +1,75 @@
 <?php include VIEW . 'header.phtml'; ?>
 <?php include VIEW . 'navigation.phtml'; ?>
-<h1>Dashboard</h1>
 
-<?php
-  foreach ($this->view_data['dataRecords1'] as $data) {
-    echo $data['drug_id']."<br>";
-  }
-  $drug12 = $this->view_data['dataRecords2'];
-  echo $drug12[0]['drug_name'];
+<!--<?php
+  //foreach ($this->view_data['dataRecords1'] as $data) {
+    //echo $data['drug_id']."<br>";
+  //}
+  //$drug12 //= $this->view_data['dataRecords2'];
+  //echo $drug12[0]['drug_name'];
 ?>
+-->
+	<div class="container">
+		<div class="row">
+			<div class="col-sm">
+				<div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+  						<div class="card-body">
+    						<h5 class="card-title d-flex justify-content-center">NO. OF DRUGS</h5>
+    						<p class="card-text h3 d-flex justify-content-center">
+    							<?php
+    								$totalDrugs = $this->view_data['dataRecords2'];
+    									echo $totalDrugs[0][0];
+    							?>
+    						</p>
+  						</div>
+				</div>
+			</div>
+			<div class="col-sm">
+				<div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+  						<div class="card-body">
+    						<h5 class="card-title d-flex justify-content-center">NO. OF STOCKS</h5>
+    						<p class="card-text h3 d-flex justify-content-center">
+    							<?php
+    								$totalStocksDrugs = $this->view_data['dataRecords3'];
+    									echo $totalStocksDrugs[0][0];
+    							?>
+    						</p>
+  						</div>
+				</div>
+			</div>
+			<div class="col-sm">
+				<div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+  						<div class="card-body">
+    						<h5 class="card-title d-flex justify-content-center">TRANSACTIONS</h5>
+    						<p class="card-text h3 d-flex justify-content-center">
+    							<?php
+    								$totaTransactions = $this->view_data['dataRecords4'];
+    									echo $totaTransactions[0][0];
+    							?>
+    						</p>
+  						</div>
+				</div>
+			</div>
+			<div class="col-sm">
+				<div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+  						<div class="card-body">
+    						<h5 class="card-title d-flex justify-content-center">NO. OF PAYMENTS</h5>
+    						<p class="card-text h3 d-flex justify-content-center">
+    							<?php
+    								$totalPayments = $this->view_data['dataRecords5'];
+    									echo $totalPayments[0][0];
+    							?>
+    						</p>
+  						</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+	
 
 <?php include VIEW . 'footer.phtml'; ?>
+
+
+
+
