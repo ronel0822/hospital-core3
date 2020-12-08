@@ -1,0 +1,44 @@
+<?php 
+  include VIEW . 'header.phtml';
+  include VIEW . 'navigation.phtml'; 
+  /*$mpName = $this->view_data['mp_name'];*/
+  
+?>
+<div class="col -12">
+  <div class="container-fluid">
+      <div class="card shadow-sm">
+          <div class="navigation card-header shadow-sm">
+            
+              <div class="col-md 8">
+              <a  href="/medPackage/medPackageList/" button class="btn btn-primary text-white"  style="float:right; margin-left: 1px">BACK</a>
+                <form action="package-view.php" method="GET">
+                  <button class="btn btn-danger" type="submit" name="delete"  style="float:right; margin-right: 2px">Delete Package</button>
+                </form>
+              <button class="btn btn-success"  style="float:right; margin-right: 2px">Update Package</button>
+              <h1 class="h3 mb-0 text-gray-800" style="float: left;">Package Information</h1>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <p class="mb-0 text-gray"><b>Package Name: </b> <br><?php /*echo $mpName[$id]['drug_name']; */?></p><br>
+              </div>
+              <p class="mb-0 text-gray"><b>Package Price: </b> <br><?php  ?></p><br>
+              <p class="mb-0 text-gray"><b>Package Descption: </b> <br><?php  ?></p><br>
+              <br><br>
+              
+           </div>
+            <div class="col-sm-6">
+              <h5 class="mb-4 text-gray-800"><b>Inclusion(s)</b></h5>
+              
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<?php
+    include VIEW . 'footer.phtml';
+?>
