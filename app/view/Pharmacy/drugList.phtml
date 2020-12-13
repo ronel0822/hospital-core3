@@ -1,34 +1,15 @@
-<!-- HMS Header-->
 <?php include VIEW . 'header.phtml'; ?>
+<?php include VIEW . 'navigation.phtml'; ?>
 
 
-<!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper" id="content">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <!--- I chchange natin ito Base sa name ng Function -->
-            <h1 class="m-0">Drug List</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <!-- Dito naman natin ilalagay kung nasaan part na tayo ng site up to 2 only -->
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="/homis/dashboard">Home</a></li>
-              <li class="breadcrumb-item active">Drug List </li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-    <!-- Main content -->
-    <section class="content" >
-        
-         <!--Dito tayo mag chchange ng workspace base sa submodule function -->
-        <div class="container-fluid">
-          <button class="btn btn-primary sm" data-toggle="modal" data-target="#exampleModal" style="float: right;">ADD DRUG</button>
+<div class="col -12">
+  <div class="container-fluid">
+      <div class="card shadow-sm">
+          <div class="navigation card-header shadow-sm">
+            <h3 style="float:left;">Drug List</h3>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="float: right;">Add Drug</button>
+          </div>
+        <div class="card-body">
           <?php
             if(isset($this->view_data['message'])){
               ?>
@@ -46,7 +27,6 @@
                   <th>Price</th>
                   <th>Type</th>
                   <th>Manufactured Date</th>
-                  <th>Available Stocks</th>
                   <th>Action</th>
               </tr>
             </thead>
@@ -54,19 +34,6 @@
               <?php
               $count = 1;
                 foreach ($this->view_data['mainData'] as $row) {
-                  $availableStocks = $row['available_stocks'];
-                  $alert = "";
-                  $message = "";
-                  if($availableStocks <= 10){
-                    $alert = "bg-danger";
-                    $message = "NEED TO RESTOCK";
-                  }elseif ($availableStocks <= 50) {
-                    $alert = "bg-warning";
-                    $message = "";
-                  }else{
-                    $alert = "bg-success";
-                    $message = "";
-                  }
                   ?>
               <tr align="center">
                   <td><?php echo $count; ?></td>
@@ -77,12 +44,11 @@
                     <?php
                         $convert = new DateTime($row["created_at"]); //create datetime object with received data
                         $date = $convert->format('M d, Y'); 
-                        $time = $convert->format('h:i A');
+                        $time = $convert->format('h:m A');
                         echo "<small><strong>Date:</strong> ".$date." <strong>Time:</strong> ".$time."</small>";
                     ?>  
                   </td>
-                  <td class="<?=$alert?>"><b><?=$message?> : <?php echo ucfirst($row['available_stocks']); ?></b></td>
-                  <td align="center"><a href="/pharmacy/drugInfo/<?php echo $row['drug_id']; ?>" title="View"><i class="fas fa-eye"></i></a></td>
+                  <td align="center"><a href="/pharmacy/drugInfo/<?php echo $row['drug_id']; ?>" title="View" class="btn btn-primary btn-sm">View</a></td>
               </tr>
               <?php
                 $count++;
@@ -90,50 +56,47 @@
               ?>
             </tbody>
           </table>
-
-                <form method="POST" action="addDrug">
-                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Add Drug</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <div class="form-group">
-                            <label for="name">Drug Name:</label>
-                            <input type="text" name="name" class="form-control" id="name">
-                          </div>
-                          <div class="form-group">
-                            <label for="type">Drug Type:</label>
-                            <input type="text" name="type" class="form-control" id="type">
-                          </div>
-                          <div class="form-group">
-                            <label for="description">Drug Description:</label>
-                            <textarea id="description" name="description" class="form-control"></textarea>
-                          </div>
-                          <div class="form-group">
-                            <label for="price">Drug Price:</label>
-                            <input type="number" name="price" class="form-control" id="price">
-                          </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <input type="submit" class="btn btn-primary" name="submit" value="Submit">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-
         </div>
-       
 
-    </section>
-    <!-- /.content -->
+      <form method="POST" action="addDrug">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Drug</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="name">Drug Name:</label>
+                  <input type="text" name="name" class="form-control" id="name">
+                </div>
+                <div class="form-group">
+                  <label for="type">Drug Type:</label>
+                  <input type="text" name="type" class="form-control" id="type">
+                </div>
+                <div class="form-group">
+                  <label for="description">Drug Description:</label>
+                  <textarea id="description" name="description" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="price">Drug Price:</label>
+                  <input type="number" name="price" class="form-control" id="price">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <input type="submit" class="btn btn-primary" name="submit" value="Submit">
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
   </div>
-
+</div>
 
 <?php include VIEW . 'footer.phtml'; ?>

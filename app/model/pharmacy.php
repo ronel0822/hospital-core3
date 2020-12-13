@@ -4,38 +4,7 @@ class pharmacy extends Database{
 
 	//Get all drugs
 	function getAllDrug(){
-		$query = "SELECT 
-					*,
-					(SELECT 
-					 SUM(stock_quantity) as sold
-					 FROM core3_pharmacy_drug_stocks 
-					 WHERE core3_pharmacy_drugs.drug_id = core3_pharmacy_drug_stocks.drug_id) as all_stocks,
-					(SELECT
-						IFNULL(SUM(quantity),0)
-					 FROM
-					 	core3_pharmacy_drug_transaction
-					 WHERE
-					 	core3_pharmacy_drugs.drug_id = core3_pharmacy_drug_transaction.drug_id
-					) as sold,
-					(SELECT 
-					 SUM(stock_quantity) as sold
-					 FROM core3_pharmacy_drug_stocks 
-					 WHERE core3_pharmacy_drugs.drug_id = core3_pharmacy_drug_stocks.drug_id) - (SELECT
-						IFNULL(SUM(quantity),0)
-					 FROM
-					 	core3_pharmacy_drug_transaction
-					 WHERE
-					 	core3_pharmacy_drugs.drug_id = core3_pharmacy_drug_transaction.drug_id
-					) as available_stocks,
-					(SELECT 
-						IFNULL(SUM(amount),0)
-					 FROM
-					 	core3_pharmacy_drug_transaction
-					 WHERE
-					 	core3_pharmacy_drug_transaction.drug_id = core3_pharmacy_drugs.drug_id
-					) as amount_gained
-					FROM core3_pharmacy_drugs 
-					ORDER BY drug_name DESC";
+		$query = "SELECT * FROM core3_pharmacy_drugs ORDER BY drug_id DESC";
 		$stmt = $this->connect()->prepare($query);
 		$stmt->execute();
 		return $stmt->fetchAll();
@@ -56,55 +25,6 @@ class pharmacy extends Database{
 		}
 	}
 
-	//Working on stocks
-    function getStocks($drugId){
-    	$query = "SELECT * FROM core3_pharmacy_drug_stocks WHERE drug_id = ? ORDER BY created_at DESC";
-		$stmt = $this->connect()->prepare($query);
-		$stmt->bindParam(1,$drugId);
-		$stmt->execute();
-		return $stmt->fetchAll();
-    }
-
-	function getDrugInformation($id){
-		$query = "SELECT 
-					*,
-					(SELECT 
-					 SUM(stock_quantity) as sold
-					 FROM core3_pharmacy_drug_stocks 
-					 WHERE core3_pharmacy_drugs.drug_id = core3_pharmacy_drug_stocks.drug_id) as all_stocks,
-					(SELECT
-						IFNULL(SUM(quantity),0)
-					 FROM
-					 	core3_pharmacy_drug_transaction
-					 WHERE
-					 	core3_pharmacy_drugs.drug_id = core3_pharmacy_drug_transaction.drug_id
-					) as sold,
-					(SELECT 
-					 SUM(stock_quantity) as sold
-					 FROM core3_pharmacy_drug_stocks 
-					 WHERE core3_pharmacy_drugs.drug_id = core3_pharmacy_drug_stocks.drug_id) - (SELECT
-						SUM(quantity)
-					 FROM
-					 	core3_pharmacy_drug_transaction
-					 WHERE
-					 	core3_pharmacy_drugs.drug_id = core3_pharmacy_drug_transaction.drug_id
-					) as available_stocks,
-					(SELECT 
-						IFNULL(SUM(amount),0)
-					 FROM
-					 	core3_pharmacy_drug_transaction
-					 WHERE
-					 	core3_pharmacy_drug_transaction.drug_id = core3_pharmacy_drugs.drug_id
-					) as amount_gained
-					FROM core3_pharmacy_drugs
-					WHERE core3_pharmacy_drugs.drug_id = ?";
-		$stmt = $this->connect()->prepare($query);
-		$stmt->bindParam(1,$id);
-		$stmt->execute();
-		return $stmt->fetchAll();			
-	}
-
-
 
 	// Viewing of Drug
 	function getDrugById($id){
@@ -117,7 +37,7 @@ class pharmacy extends Database{
 					core3_pharmacy_drugs.created_at,
 					IFNULL(SUM(stock_quantity), 0) as all_stocks,
 					IFNULL(SUM(quantity), 0) as sold,
-					IFNULL(SUM(stock_quantity), 0) - IFNULL(SUM(quantity), 0) as current_stocks, 
+					SUM(stock_quantity) - IFNULL(SUM(quantity), 0) as current_stocks, 
 					core3_pharmacy_drugs.drug_price * IFNULL(SUM(quantity), 0) as total_gained 
 					FROM 
 					core3_pharmacy_drugs 
@@ -151,6 +71,15 @@ class pharmacy extends Database{
 		}else{
 			return false;
 		}
+    }
+
+    //Get all stocks;
+    function getStocks($drugId){
+    	$query = "SELECT * FROM core3_pharmacy_drug_stocks WHERE drug_id = ? ORDER BY drug_id DESC";
+		$stmt = $this->connect()->prepare($query);
+		$stmt->bindParam(1,$drugId);
+		$stmt->execute();
+		return $stmt->fetchAll();
     }
 
     //Cashier Transaction
@@ -189,17 +118,6 @@ class pharmacy extends Database{
 		$stmt->bindParam(3,$transNo);
 		$stmt->execute();
 		return $transNo;
-    }
-
-    function transactionView(){
-    	$query = "SELECT * FROM core3_pharmacy_drug_transaction
-					LEFT JOIN core3_pharmacy_drugs
-					ON core3_pharmacy_drugs.drug_id = core3_pharmacy_drug_transaction.drug_id
-					GROUP BY transactionNo 
-					ORDER BY transactionNo DESC";
-		$stmt = $this->connect()->prepare($query);
-		$stmt->execute();
-		return $stmt->fetchAll();
     }
 
     //Viewing of Cashier Transaction

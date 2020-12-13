@@ -11,10 +11,7 @@ class pharmacyController extends Controller{
 
 	public function drugInfo($id){
 		$this->model('pharmacy');
-		$this->view('Pharmacy\drugInfo',[
-			'drug'=>$this->model->getDrugInformation($id),
-			'stock'=>$this->model->getStocks($id)
-		]);
+		$this->view('Pharmacy\drugList',['mainData'=>$this->model->getAllDrug()]);
 		$this->view->page_title = 'Drugs';
 		$this->view->render();
 	}
@@ -37,34 +34,6 @@ class pharmacyController extends Controller{
 			$this->view->page_title = 'Drugs';
 			$this->view->render();
 		}
-	}
-
-	public function addStock($id){
-		$this->model('pharmacy');
-		$message = "";
-		$alert = "alert alert-";
-		if(isset($_POST['submitStock'])){
-			if($this->model->addStock($id,$_POST['quantity'],$_POST['expirationDate'])){
-				$message = "Stock added.";
-				$alert.='success';
-				$this->view('Pharmacy\drugInfo',[
-					'drug'=>$this->model->getDrugById($id),
-					'stock'=>$this->model->getStocks($id),
-					'message'=>$message,
-					'alert'=>$alert
-				]);
-				$this->view->page_title = 'Drugs';
-				$this->view->render();
-				// header("Location: /pharmacy/drugInfo/".$id);
-			}
-		}
-	}
-
-	function transaction(){
-		$this->model('pharmacy');
-		$this->view('Pharmacy\transaction',['trans'=>$this->model->transactionView()]);
-		$this->view->page_title = 'Transaction';
-		$this->view->render();
 	}
 
 }
