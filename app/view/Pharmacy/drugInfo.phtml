@@ -10,7 +10,7 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <!--- I chchange natin ito Base sa name ng Function -->
-            <h1 class="m-0">Drug List</h1>
+            <h1 class="m-0">Drug Information</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <!-- Dito naman natin ilalagay kung nasaan part na tayo ng site up to 2 only -->
@@ -34,6 +34,13 @@
               </div>
             <?php
         }
+        ?>
+
+        <?php 
+          $allStocks = 0;
+          foreach ($this->view_data['stock'] as $row){
+            $allStocks += $row['stock_quantity'];
+          }
         ?>
 
       <div class="container">
@@ -61,7 +68,7 @@
             <?php
                       $convert = new DateTime($this->view_data['drug'][0]["created_at"]); //create datetime object with received data
                       $date = $convert->format('M d, Y'); 
-                      $time = $convert->format('h:m A');
+                      $time = $convert->format('h:i A');
                       echo "<small>Date : &nbsp;<strong>".$date."</strong> &nbsp; Time: &nbsp;<strong>".$time."</strong></small>";
                   ?>
                   </div>
@@ -75,13 +82,30 @@
           </div>
           <div class="col">
                   <br>
-            <h4>Available Stocks : 
+            <?php 
+              $availableStocks = $allStocks - $this->view_data['drug'][0]['sold'];
+              $alert = "";
+              $message = "";
+              if($availableStocks <= 10){
+                $alert = "danger";
+                $message = "Critical";
+              }elseif ($availableStocks <= 50) {
+                $message = "Warning";
+                $alert = "warning";
+              }elseif ($availableStocks > 50) {
+                $message = "Good";
+                $alert = "success";
+              }
+            ?>
+            <button class="btn btn-<?=$alert?> sm" data-toggle="modal" data-target="#exampleModal">
+              Available Stocks : 
               <strong style="font-family:DejaVu Sans Mono;">
-                  <?php 
-                  echo $this->view_data['drug'][0]['current_stocks'];
-                    ?>
+                <?php 
+                    echo $availableStocks;
+                  ?>
               </strong>
-            </h4>
+            </button>
+
           </div>
           <div class="col-lg-12">
             <hr>
@@ -93,20 +117,19 @@
         </div>
       </div>
 
-
       <div class="container">
         <div class="container-fluid">
           <hr>
           <span style="font-size:22px;"><b>More Information :</b></span>
           <div class="row" align="center">
             <div class="col-4">
-              All Inserted Stocks : <strong><?php echo $this->view_data['drug'][0]['all_stocks']; ?></strong>
+              All Inserted Stocks : <strong><?php echo $allStocks; ?></strong>
             </div>
             <div class="col-4">
               Sold : <strong><?php echo $this->view_data['drug'][0]['sold']; ?></strong>
             </div>
             <div class="col-4">
-              Total Gained : PHP <strong><?php echo number_format($this->view_data['drug'][0]['total_gained'],2); ?></strong>
+              Total Gained : PHP <strong><?php echo number_format($this->view_data['drug'][0]['amount_gained'],2); ?></strong>
             </div>
           </div>
         </div>
