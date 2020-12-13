@@ -191,6 +191,17 @@ class pharmacy extends Database{
 		return $transNo;
     }
 
+    function transactionView(){
+    	$query = "SELECT * FROM core3_pharmacy_drug_transaction
+					LEFT JOIN core3_pharmacy_drugs
+					ON core3_pharmacy_drugs.drug_id = core3_pharmacy_drug_transaction.drug_id
+					GROUP BY transactionNo 
+					ORDER BY transactionNo DESC";
+		$stmt = $this->connect()->prepare($query);
+		$stmt->execute();
+		return $stmt->fetchAll();
+    }
+
     //Viewing of Cashier Transaction
     function viewTransaction(){
 		$datas = [[]];

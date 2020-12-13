@@ -60,4 +60,11 @@ class pharmacyController extends Controller{
 		}
 	}
 
+	function transaction(){
+		$this->model('pharmacy');
+		$this->view('Pharmacy\transaction',['trans'=>$this->model->transactionView()]);
+		$this->view->page_title = 'Transaction';
+		$this->view->render();
+	}
+
 }
