@@ -1,0 +1,70 @@
+/*CSS para sa Front Site*/
+ul#nav{
+list-style: none;
+padding: 0;
+margin: 0 0 0px 0;
+
+}
+
+ul#nav li{
+display: inline;
+margin-right:10px;
+color: green;
+
+}
+ul#nav li a{
+color: green;
+
+}
+body {
+  min-height: 65rem;
+  padding-top: 5%;
+}
+
+#loader{
+ position: fixed;
+ left: 0px;
+ top: 0px;
+ width: 100%;
+ height: 100%;
+ z-index: 9999;
+ background: url('../img/loader.gif') 50% 50% no-repeat rgb(249,249,249);
+ opacity: 1;
+}
+
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+}
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  margin-bottom: 4rem;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  bottom: 3rem;
+  z-index: 10;
+}
+
+.carousel-caption h2{
+  color: white;
+  font-size: 50px;
+}
+
+
+/* Declare heights because of positioning of img element */
+.carousel-item {
+  height: 30rem;
+  background-color: #777;
+}
+.carousel-item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 30rem;
+}

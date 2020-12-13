@@ -37,7 +37,7 @@ class pharmacy extends Database{
 					core3_pharmacy_drugs.created_at,
 					IFNULL(SUM(stock_quantity), 0) as all_stocks,
 					IFNULL(SUM(quantity), 0) as sold,
-					SUM(stock_quantity) - IFNULL(SUM(quantity), 0) as current_stocks, 
+					IFNULL(SUM(stock_quantity), 0) - IFNULL(SUM(quantity), 0) as current_stocks, 
 					core3_pharmacy_drugs.drug_price * IFNULL(SUM(quantity), 0) as total_gained 
 					FROM 
 					core3_pharmacy_drugs 
