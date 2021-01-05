@@ -1,0 +1,70 @@
+<?php
+if(isset($this->view_data['trans'][0]['transactionNo'])){
+
+	$subTotal = 0;
+
+	$count = 0;
+	$price = [];
+
+		$price[$count] = $this->view_data['trans'][0]['amount'];
+		require('fpdf17/fpdf.php');
+
+		//A4 width : 219mm
+		//default margin : 10mm each side
+		//writable horizontal : 219 (10*2) = 189mm
+
+		$pdf = new FPDF('P','mm',array(50,150));
+
+		$pdf->AddPage();
+
+		//set font to arial, bold, 14pt
+		$pdf->SetFont('Times','B','8');
+
+		//Cell( width, height, text, border, end line, [align] )
+		$pdf->Cell(0,1, 'Medlink Pharmacy', 0,1,'C');
+
+		$pdf->SetFont('Times','B','5');
+
+		$pdf->Cell(0,5, '#541 greenhills exit. Quezon city', 0,1,'C');
+
+		$pdf->Cell(0  ,3,'',0,1);
+        $convert = new DateTime($this->view_data['trans'][0]["created_at"]); //create datetime object with received data
+        $date = $convert->format('M d, Y'); 
+        $time = $convert->format('h:m A');
+		$pdf->Cell(37  ,5,"Date: ".$date." Time: ".$time,0,1,'R');
+
+		$pdf->Cell(0,0,'- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -',0,1,'C');
+
+			$pdf->Cell(0,4,"Transaction #: ".$this->view_data['trans'][0]['transactionNo'],0,1);
+
+
+		$pdf->Cell(0,0,'- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -',0,1,'C');
+
+		$pdf->Cell(0  ,4,'',0,1);
+
+		$subTotal += $price[$count] * $this->view_data['trans'][0]['quantity'];
+		$count++;
+		foreach ($this->view_data['trans'] as $rows){
+			$price[$count] = $rows['amount'];
+			$pdf->Cell(0  ,4,$rows['quantity']." ".$rows['drug_name'],0,0,'L');
+			$pdf->Cell(5  ,4,"PHP ".number_format($price[$count] * $rows['quantity'],2),0,1,'R');
+			$subTotal += $price[$count] * $rows['quantity'];
+			$count++;
+		}
+
+		$pdf->Cell(0  ,4,'',0,1);
+
+
+		$pdf->Cell(0  ,2.5,'TOTAL :',0,0,'C');
+		$pdf->Cell(5  ,2.5,"PHP ".number_format($subTotal,2),0,1,'R');
+
+		$pdf->Cell(0  ,4,'',0,1);
+
+		$pdf->Cell(0  ,4,'THANK YOU FOR TRUSTING US!',0,1,'C');
+		$pdf->Cell(0  ,2,'PLEASE COME AGAIN!',0,1,'C');
+
+
+		$pdf->Output();
+}
+
+?>
