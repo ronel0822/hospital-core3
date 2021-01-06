@@ -215,24 +215,25 @@ data: {
 labels: [
   "Drugs", "Stocks", "Transactions", "Payments"],
 datasets: [{
-data: [
-  <?php
-    $totalDrugs = $this->view_data['dataRecords2'];
-      echo $totalDrugs[0][0];
-  ?>,
-  <?php
-    $totalStocksDrugs = $this->view_data['dataRecords3'];
-      echo $totalStocksDrugs[0][0];
-  ?>, 
-  <?php
-    $totaTransactions = $this->view_data['dataRecords4'];
-      echo $totaTransactions[0][0];
-  ?>, 
-  <?php
-    $totalPayments = $this->view_data['dataRecords5'];
-      echo $totalPayments[0][0];
-  ?>
-  ],
+  label:'Week',
+  data: [
+    <?php
+      $totalDrugs = $this->view_data['dataRecords2'];
+        echo $totalDrugs[0][0];
+    ?>,
+    <?php
+      $totalStocksDrugs = $this->view_data['dataRecords3'];
+        echo $totalStocksDrugs[0][0];
+    ?>, 
+    <?php
+      $totaTransactions = $this->view_data['dataRecords4'];
+        echo $totaTransactions[0][0];
+    ?>, 
+    <?php
+      $totalPayments = $this->view_data['dataRecords5'];
+        echo $totalPayments[0][0];
+    ?>
+    ],
 backgroundColor: [
 'rgba(255, 99, 132, 0)',
 'rgba(54, 162, 235, 0)',
@@ -259,5 +260,55 @@ beginAtZero: true
 }
 });
 </script>
+
+<!-- Daily Drug Records -->
+<script>
+var ctx = document.getElementById("dailyRecord").getContext('2d');
+var dailyRecord = new Chart(ctx, {
+type: 'bar',
+data: {
+labels: [
+  "<?php 
+    foreach($this->view_data['dailyDrugRecords'] as $dailyRecords) {
+      echo $dailyRecords['created_at'];
+    }
+  ?>"
+  ],
+datasets: [{
+  label:'Daily',
+  data: [
+    <?php 
+      foreach($this->view_data['dailyDrugRecords'] as $dailyRecord) {
+        echo $dailyRecord['COUNT(created_at)'];
+     }
+    ?>
+    ],
+backgroundColor: [
+'rgba(255, 99, 132, 1)',
+'rgba(54, 162, 235, 1)',
+'rgba(255, 206, 86, 1)',
+'rgba(75, 192, 192, 1)'
+],
+borderColor: [
+'rgba(255,99,132,1)',
+'rgba(54, 162, 235, 1)',
+'rgba(255, 206, 86, 1)',
+'rgba(75, 192, 192, 1)' 
+],
+borderWidth: 1
+}]
+},
+options: {
+scales: {
+yAxes: [{
+ticks: {
+beginAtZero: true
+}
+}]
+}
+}
+});
+</script>
+
 </body>
 </html>

@@ -6,6 +6,7 @@ class homisController extends Controller{
 		$this->model('homis');
 		$this->view('homis\dashboard',
 			[
+				'dailyDrugRecords'=>$this->model->getTotalDrugsCreated(),
 				'dataRecords1'=>$this->model->getAllDrug(),
 				'dataRecords2'=>$this->model->getDrugsTotal(),
 				'dataRecords3'=>$this->model->getStockDrugs(),
@@ -17,3 +18,4 @@ class homisController extends Controller{
 	}
 
 }
+?>
