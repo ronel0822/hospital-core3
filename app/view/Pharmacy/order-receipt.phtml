@@ -42,13 +42,12 @@ if(isset($this->view_data['trans'][0]['transactionNo'])){
 
 		$pdf->Cell(0  ,4,'',0,1);
 
-		$subTotal += $price[$count] * $this->view_data['trans'][0]['quantity'];
-		$count++;
+		$subTotal = 0;
+
 		foreach ($this->view_data['trans'] as $rows){
-			$price[$count] = $rows['amount'];
 			$pdf->Cell(0  ,4,$rows['quantity']." ".$rows['drug_name'],0,0,'L');
-			$pdf->Cell(5  ,4,"PHP ".number_format($price[$count] * $rows['quantity'],2),0,1,'R');
-			$subTotal += $price[$count] * $rows['quantity'];
+			$pdf->Cell(5  ,4,"PHP ".number_format($rows['amount'] * $rows['quantity'],2),0,1,'R');
+			$subTotal += $rows['amount'] * $rows['quantity'];
 			$count++;
 		}
 
