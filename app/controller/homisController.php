@@ -4,7 +4,7 @@ class homisController extends Controller{
 
 	public function dashboard(){
 		$this->model('homis');
-		$this->view('homis\dashboard',
+		$this->view('homis'.DIRECTORY_SEPARATOR.'dashboard',
 			[
 				'dailyDrugRecords'=>$this->model->getTotalDrugsCreated(),
 				'dataRecords1'=>$this->model->getAllDrug(),
