@@ -25,33 +25,30 @@
 
     <!-- Main content -->
     <section class="content" >
-          <form action="create-package.php" method="POST" name="add_name" id="add_name">
+          <form action="/medPackage/medCreatePackage/" method="POST">
             <div class="row">
               <div class="col-sm-6">
                 <div class="container">
                   <div class="form-group">
-                    <label for="id">Package #:</label>
-                <!--<input type="hidden" class="form-control" id="id" value="<?php echo $row['id']+1; ?>" name="id" >
-                    <input type="text" class="form-control" id="id"  value="<?php echo $row['id']+1; ?>" name="id" disabled>
-                --></div>
+                  </div>
                     <div class="form-group">
                     <label for="name">Package Name:</label>
-                    <input type="text" class="form-control" id="name1" placeholder="Enter Package Name" name="name1">
+                    <input type="text" class="form-control" id="packageName" placeholder="Enter Package Name" name="packageName">
                     </div>
                     <div class="form-group">
                     <label for="price">Package Price:</label>
-                    <input type="number" class="form-control" id="price" placeholder="Enter Package Price" name="price">
+                    <input type="number" class="form-control" id="packagePrice" placeholder="Enter Package Price" name="packagePrice">
                     </div>
                     <div class="form-group">
                     <label for="desc">Package Description:</label>
-                    <textarea type="text" class="form-control" id="desc" placeholder="Enter Package Description" name="desc"></textarea>
+                    <textarea type="text" class="form-control" id="packageDesc" placeholder="Enter Package Description" name="packageDesc"></textarea>
                     </div>
                 </div>
               </div>
                 <div class="col-sm-6">
                   <div class="container">
-                    <div class="form-group">
-                        <span>Inclusion(s):</span>
+                    <div class="form-group"><br>
+                        <span><b>Inclusion(s):</b></span>
                         <table id="dynamic_field"> 
                         <br> 
                         <tr style="height:45px;">  
@@ -63,8 +60,8 @@
                   </div>
               </div> 
             <div class="col-sm-6">
-              <div class="container"> 
-                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+              <div class="container">
+                <button type="submit" name="createPackageSubmit" class="btn btn-primary">Submit</button>
               </div>
             </div> 
           </div>

@@ -1,0 +1,61 @@
+<?php include VIEW . 'header.phtml'; ?>
+
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" id="content">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+
+            <!--- Title to ng page na pinasok niyo -->
+            <h1 class="h3 mb-0 text-gray-800" style="float: left;">Avail Information</h1>
+
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <!-- Dito niyo lagay kung nasaang page kayo. -->
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="homis/dashboard">Home</a></li>
+              <li class="breadcrumb-item active">Avail Information</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content" >
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h5 class="mb-0 text-gray-800"><b><u>Patient Information</u></b></h5>
+        </div>
+        <p class="mb-0 text-gray"><b>Patient Name: </b> <br><?php echo ucfirst($this->view_data['medPackageAvailView'][0]['patient_name']); ?></p><br>
+        <p class="mb-0 text-gray"><b>Department: </b> <br><?php echo ucfirst($this->view_data['medPackageAvailView'][0]['department']); ?></p><br>
+        <p class="mb-0 text-gray"><b>Availed Date: </b> <br><?php echo date_format(date_create($this->view_data['medPackageAvailView'][0]['created_at']),"F d, Y h:m a") ?></p><br>
+        <p class="mb-0 text-gray"><b>Examination Date: </b> <br><?php echo date_format(date_create($this->view_data['medPackageAvailView'][0]['exam_date']),"F d, Y h:m a") ?></p>
+        <br>
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h5 class="mb-0 text-gray-800"><b><u>Package Information</u></b></h5>
+        </div>
+        <p class="mb-0 text-gray"><b>Package Name: </b> <br><?php echo ucfirst($this->view_data['medPackageAvailView'][0]['mp_name']); ?></p><br>
+        <p class="mb-0 text-gray"><b>Package Price: </b> <br><?php echo ucfirst($this->view_data['medPackageAvailView'][0]['mp_price']); ?></p><br>
+        <p class="mb-0 text-gray"><b>Package Descption: </b> <br><?php echo ucfirst($this->view_data['medPackageAvailView'][0]['mp_desc']); ?></p>
+      </div>          
+      <div class="col-sm-6">
+        <h5 class="mb-0 text-gray-800"><b>Inclusion(s)</b></h5><br>
+            <?php
+                foreach ($this->view_data['medPackageAvailView'] as $avail) {
+            ?>
+            <p class='mb-2 text-gray'><?php echo $avail['testname']; ?></p>
+            <?php 
+                }
+            ?>
+        </div>
+      </div>
+    </div> 
+    </section>
+    <!-- /.content -->
+
+<?php include VIEW . 'footer.phtml'; ?>
