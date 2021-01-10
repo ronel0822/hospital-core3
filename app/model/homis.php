@@ -42,4 +42,11 @@ class homis extends Database{
 		return $stmt->fetchAll();
 	}
 
+	function getTotalDrugsCreated(){
+		$query = "SELECT created_at,COUNT(created_at) FROM core3_pharmacy_drugs GROUP BY created_at";
+		$stmt = $this->connect()->prepare($query);
+		$stmt->execute();
+		return $stmt->fetchAll();
+	}
+
 }

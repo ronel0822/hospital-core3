@@ -35,7 +35,7 @@ class pharmacy extends Database{
 					 	core3_pharmacy_drug_transaction.drug_id = core3_pharmacy_drugs.drug_id
 					) as amount_gained
 					FROM core3_pharmacy_drugs 
-					ORDER BY drug_name DESC";
+					ORDER BY drug_name ASC";
 		$stmt = $this->connect()->prepare($query);
 		$stmt->execute();
 		return $stmt->fetchAll();

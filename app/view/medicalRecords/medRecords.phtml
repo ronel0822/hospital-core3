@@ -1,0 +1,134 @@
+<?php include VIEW . 'header.phtml'; ?>
+
+<!-- Content Wrapper. Contains page content -->
+ <div class="content-wrapper" id="content">
+   <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+
+            <!--- Title to ng page na pinasok niyo -->
+            <h1 class="m-0">MEDICAL RECORDS</h1>
+
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <!-- Dito niyo lagay kung nasaang page kayo. -->
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Medical Records </li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content" >
+        
+    <!-- Index for Medical Records-->
+    	
+    <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+             <tr>
+               <th>#</th>
+               <th class="th-sm">name</th>
+               <th class="th-sm">address</th>
+               <th class="th-sm">Weight</th>
+               <th class="th-sm">Height</th>
+               <th class="th-sm">Action</th>
+             </tr>
+        </thead>
+          	<tbody>
+            <?php 
+             $count = 1;
+    		foreach ($this->view_data['medicalRecords'] as $row) {
+    		?>
+            <tr>
+              <td><?php echo $count++ ?></td>
+              <td><?php echo ucfirst($row['firstName']. $row['middleName']. $row['lastName']) ?></td>
+              <td><?php echo $row['address'] ?></td>
+              <td><?php echo $row['weight'] ?></td>
+              <td><?php echo $row['height'] ?></td>
+              <td align="center">
+                <a href="/medicalRecords/medRecords-view/<?php echo $row['id'] ?>" class="btn btn-info btn-sm"><i class="fas fa-eye"></i> View</a>
+              	<!-- <a href="package-view.php?id=<?php echo $row['id'] ?>" class="btn btn-info btn-sm"><i class="fas fa-eye"></i> View</a> 
+              	<!-- <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal">
+				 <i class="fas fa-eye"> View</i>
+				</button> -->
+              	<a href class="btn btn-danger btn-sm"><i class="fas fa-file-pdf"></i> PDF</a>
+              </td>
+            </tr>
+            <?php
+                $count++;
+                }
+            ?>
+          </tbody>
+        </table>	
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+        	<?php 
+        		$mrName = $this->view_data['medicalRecords'];
+        			echo $mrName[0]['firstName']. "&nbsp; | &nbsp;";
+        		$mrContact = $this->view_data['medicalRecords'];
+        			echo $mrContact[0]['contactNo'];
+        	?>		
+        </h5>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span> -->
+        </button>
+      </div>
+      <div class="modal-body">
+        <h6>address: 
+        	<?php
+        		$mrAddress = $this->view_data['medicalRecords'];
+        			echo $mrAddress[0]['address'];
+        	?> 
+        </h6>
+        <h6>Height:
+        	<?php 
+        		$mrHeight = $this->view_data['medicalRecords'];
+        			echo $mrHeight[0]['height'];
+        	?>
+        </h6>
+        <h6>
+        	Weight:
+        	<?php 
+        		$mrWeight = $this->view_data['medicalRecords'];
+        			echo $mrWeight[0]['weight'];
+        	?>
+        </h6>
+        <!-- <div style="height: 1px; background-color: black;"></div> -->
+        <hr>
+        <h5>Medical Type</h5>
+        	<?php 
+        		$mrMedType = $this->view_data['medicalRecords'];
+        			echo "&emsp;". $mrMedType[0]['medicalType'];
+        	?>
+        <h5>Medical Problem</h5>
+        	<?php 
+        		$mrMedProblem = $this->view_data['medicalRecords'];
+        			echo "&emsp;". $mrMedProblem[0]['medicalProblems'];
+        	?>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+      </div>
+    </div>
+  </div>
+</div>
+ </div>
+       
+
+    </section>
+    <!-- /.content -->
+  </div>
+
+<?php include VIEW . 'footer.phtml'; ?>
