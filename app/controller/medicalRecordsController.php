@@ -15,6 +15,13 @@ class medicalRecordsController extends Controller{
 		$this->view->page_title = 'Records view';
 		$this->view->render();
 	}
+
+	function medRecordsPdf($id){
+		$this->model('medicalRecords');
+		$this->view('medicalRecords'.DIRECTORY_SEPARATOR.'medRecords-pdf',['medRecPdf'=>$this->model->medicalRecordsView($id)]);
+		$this->view->page_title = 'Medical Information';
+		$this->view->render();
+	}
 }
 
 ?>
