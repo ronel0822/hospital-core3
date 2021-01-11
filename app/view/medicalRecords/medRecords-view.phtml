@@ -1,0 +1,84 @@
+<!-- HMS Header-->
+<?php include VIEW . 'header.phtml'; ?>
+
+
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" id="content">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+
+            <!--- Title to ng page na pinasok niyo -->
+            <h1 class="m-0">MEDICAL RECORDS</h1>
+
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <!-- Dito niyo lagay kung nasaang page kayo. -->
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Medical Records </li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content" >
+        <div class="row">
+          <div class="col">
+            <a href="/medicalRecords/medRecordsPdf/" target="_blank" class="btn btn-danger"><i class="fas fa-file-pdf"> PDF</i></a>
+            <h4>Patient Name: <strong><?php echo $this->view_data['medView'][0]['firstName'] ?></strong>
+            </h4>
+          </div>
+          <div class="col">
+            <?php
+              $convert = new DateTime($this->view_data['medView'][0]['created_at']);
+              $date = $convert->format('M d, Y');
+              $time = $convert->format('h:m A');
+                echo "<small style='float:right;'><strong>Date:</strong> ".$date." <strong>Time:</strong> ".$time."</small>";
+            ?>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <medium>Contact No:<strong>&nbsp;<?php echo $this->view_data['medView'][0]['contactNo']; ?></strong></medium>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col">
+            <h5>Address:</h5>
+              <strong><?php echo $this->view_data['medView'][0]['address']; ?></strong>
+          </div>
+          <div class="col">
+            <h5>Height:</h5>
+              <strong><?php echo $this->view_data['medView'][0]['height']; ?></strong>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col"></div>
+          <div class="col">
+            <h5>Weight:</h5>
+              <strong><?php echo $this->view_data['medView'][0]['weight']; ?></strong>
+          </div>
+        </div>
+        <hr>
+        <h5>Medical Type</h5>
+          <strong><?php echo $this->view_data['medView'][0]['medicalType'];
+          ?></strong>
+        <h5>Medical Problems</h5>
+        <strong><?php echo $this->view_data['medView'][0]['medicalProblems']; ?></strong>
+  </div>
+
+       
+
+    </section>
+    <!-- /.content -->
+  </div>
+
+
+<?php include VIEW . 'footer.phtml'; ?>
