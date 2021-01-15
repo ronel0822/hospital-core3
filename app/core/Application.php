@@ -1,8 +1,8 @@
 <?php
 
 class Application {
-	protected $controller = 'homeController';
-	protected $action = 'index';
+	protected $controller = 'homisController';
+	protected $action = 'dashboard';
 	protected $prams = [];
 
 	public function __construct(){
@@ -22,8 +22,8 @@ class Application {
 		if(!empty($request)){
 			$url = explode('/', $request);
 
-			$this->controller = isset($url[0]) ? $url[0].'Controller' : 'homeController';
-			$this->action = isset($url[1]) ? $url[1] : 'index';
+			$this->controller = isset($url[0]) ? $url[0].'Controller' : 'homisController';
+			$this->action = isset($url[1]) ? $url[1] : 'dashboard';
 			unset($url[0],$url[1]);
 			$this->prams = !empty($url) ? array_values($url) : [];
 		}

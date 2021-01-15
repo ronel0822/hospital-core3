@@ -29,10 +29,6 @@
     <!-- Main content -->
     <section class="content" > 
 
-      <?php 
-                    $price = $this->view_data['trans'][0]['amount'];
-            $total+=$price * $this->view_data['trans'][0]['quantity'];
-          ?>
 
           <div class="row">
             <div class="col">
@@ -65,21 +61,6 @@
             </div>
           </div>
           <br>
-
-        <div class="row">
-            <div class="col">
-              <?php echo $this->view_data['trans'][0]['drug_name']; ?>
-            </div>
-            <div class="col">
-              PHP <?php echo number_format($price,2); ?>
-            </div>
-            <div class="col">
-              <?php echo $this->view_data['trans'][0]['quantity']; ?>
-            </div>
-            <div class="col">
-              PHP <?php echo number_format($price * $this->view_data['trans'][0]['quantity'],2); ?>
-            </div>
-          </div>
           <?php
             foreach ($this->view_data['trans'] as $rows) {
                     $price = $rows['amount'];
