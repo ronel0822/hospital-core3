@@ -1,4 +1,6 @@
-<?php include VIEW . 'header.phtml'; ?>
+<?php 
+  include VIEW . 'header.phtml'; 
+?>
 
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper" id="content">
@@ -51,7 +53,7 @@
               <td><?php echo $row['mp_name'] ?></td>
               <td><?php echo $row['mp_price'] ?></td>
               <td><?php echo $row['mp_desc'] ?></td>
-              <td align="center"><a href="package-view.php?id=<?php echo $row['id'] ?>" class="btn btn-info btn-sm">View</a></td>
+              <td align="center"><a href="/medPackage/medPackageView/<?php echo $row['id']; ?>" class="btn btn-info btn-sm">View</a></td>
             </tr>
             <?php
                 $count++;
