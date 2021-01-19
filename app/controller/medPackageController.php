@@ -45,18 +45,16 @@ class medPackageController extends Controller{
 	public function createNewPackage(){
 		$this->model('medPackage');
 		if(isset($_POST['submit'])){
-			if($this->model->createNewPackage(
-					$_POST['id'],	
-					$_POST['packageName'],
-					$_POST['packagePrice'],
-					$_POST['packageDesc'])){
-				$class = "alert alert-success";
-				$message = "Package Created Successfully!";
-				$this->view('medPackage'.DIRECTORY_SEPARATOR.'medPackageList',[
-					'mainData'=>$this->model->getAllMedPackage(),
-					'class'=>$class,'message'=>$message]);
-				$this->view->page_title = 'Medical Package';
-				$this->view->render();
+			if($this->model->createNewPackage($_POST['id'],$_POST['packageName'],$_POST['packagePrice'],$_POST['packageDesc'])){
+				if(isset($_POST['name'])){
+					if($this->model->insertInclusion($_POST['name'],$_POST['id'])){
+						$class = "alert alert-success";
+						$message = "Package Created Successfully!";
+						$this->view('medPackage'.DIRECTORY_SEPARATOR.'medPackageList',['mainData'=>$this->model->getAllMedPackage(),'class'=>$class,'message'=>$message]);
+						$this->view->page_title = 'Medical Package';
+						$this->view->render();
+					}
+				}
 			}
 
 		}else{

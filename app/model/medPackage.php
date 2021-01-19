@@ -61,6 +61,18 @@ class medPackage extends Database{
 			return false;
 		}
 	}
+
+	function insertInclusion($name,$id){
+		foreach ($name as $data) {
+			$query = "INSERT INTO core3_med_pack_inc 
+			VALUES (null,?,?);";
+			$stmt = $this->connect()->prepare($query);
+			$stmt->bindParam(1,$data);
+			$stmt->bindParam(2,$id);
+			$stmt->execute();
+		}
+		return true;
+	}
 	
 	//get Id Medical Package
 	function getIdMedPackage(){
