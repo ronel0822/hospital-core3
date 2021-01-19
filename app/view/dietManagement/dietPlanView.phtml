@@ -1,0 +1,47 @@
+<?php include VIEW . 'header.phtml'; ?>
+
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" id="content">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+
+            <!--- Title to ng page na pinasok niyo -->
+            <h1 class="m-0">Diet Plan Information</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <!-- Dito niyo lagay kung nasaang page kayo. -->
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="homis/dashboard">Home</a></li>
+              <li class="breadcrumb-item active">Diet Plan Information</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+        <a  href="/dietManagement/dietPlanList" button class="btn btn-primary text-white"  style="float:right; ">BACK</a>
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-9">
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                
+              </div>
+              <h5><b>Disease Name: </b> <br><?php echo ucfirst($this->view_data['dietPlanView'][0]['Disease']); ?></h5><br>
+              <h5><b>Disease Description: </b> <br><?php echo ucfirst($this->view_data['dietPlanView'][0]['dp_desc']); ?></h5><br>
+              <h5><b>Break Fast: </b> <br><?php echo ucfirst($this->view_data['dietPlanView'][0]['Breakfast']); ?></h5><br>
+              <h5><b>Lunch: </b> <br><?php echo ucfirst($this->view_data['dietPlanView'][0]['Lunch']); ?></h5><br>
+              <h5><b>Dinner: </b> <br><?php echo ucfirst($this->view_data['dietPlanView'][0]['Dinner']); ?></h5><br>
+              
+           </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<?php
+    include VIEW . 'footer.phtml';
+?>

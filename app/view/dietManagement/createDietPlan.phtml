@@ -1,0 +1,73 @@
+<?php include VIEW . 'header.phtml'; ?>
+
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" id="content">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+
+            <!--- Title to ng page na pinasok niyo -->
+            <h1 class="m-0">Create Diet Plan</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <!-- Dito niyo lagay kung nasaang page kayo. -->
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="homis/dashboard">Home</a></li>
+              <li class="breadcrumb-item active">Create Diet Plan</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content" >
+    <?php
+        if(isset($this->view_data['message'])){
+            ?>
+              <div class="alert alert-<?=$this->view_data['alert']?>">
+                <?=$this->view_data['message']?>
+              </div>
+            <?php
+        }
+      ?>
+          <form method="POST" action="addDietPlan">
+            <div class="row">
+              <div class="col-sm-9">
+                <div class="container">
+                  <div class="form-group">
+                    <label for="name">Disease Name:</label>
+                    <input type="text" class="form-control" id="disease" placeholder="Enter Disease Name" name="disease">
+                    </div>
+                    <div class="form-group">
+                    <label for="breakfast">Break Fast:</label>
+                    <input type="text" class="form-control" id="breakfast" placeholder="Enter Break fast" name="breakfast">
+                    </div>
+                    <div class="form-group">
+                    <label for="lunch">Lunch:</label>
+                    <input type="text" class="form-control" id="lunch" placeholder="Enter Lunch" name="lunch">
+                    </div>
+                    <div class="form-group">
+                    <label for="dinner">Dinner:</label>
+                    <textarea type="text" class="form-control" id="dinner" placeholder="Enter Dinner" name="dinner"></textarea>
+                    </div>
+                </div>
+              </div> 
+            <div class="col-sm-6">
+              <div class="container">
+                <button type="submit" name="dietPlan_btn" class="btn btn-primary">Submit</button>
+              </div>
+            </div> 
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php 
+  include VIEW . 'footer.phtml'; 
+?>

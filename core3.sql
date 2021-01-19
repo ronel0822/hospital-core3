@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2020 at 03:28 AM
--- Server version: 10.1.34-MariaDB
--- PHP Version: 7.2.7
+-- Generation Time: Jan 19, 2021 at 10:13 PM
+-- Server version: 10.3.16-MariaDB
+-- PHP Version: 7.3.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,44 @@ SET time_zone = "+00:00";
 --
 -- Database: `core3`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `core3_diet_plan`
+--
+
+CREATE TABLE `core3_diet_plan` (
+  `id` int(11) NOT NULL,
+  `Disease` varchar(255) NOT NULL,
+  `dp_desc` varchar(255) NOT NULL,
+  `Breakfast` varchar(255) NOT NULL,
+  `Lunch` varchar(255) NOT NULL,
+  `Dinner` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `core3_diet_plan`
+--
+
+INSERT INTO `core3_diet_plan` (`id`, `Disease`, `dp_desc`, `Breakfast`, `Lunch`, `Dinner`) VALUES
+(10, 'test1', 'test lang ', 'test1', 'test1', 'test1'),
+(11, 'test2', 'test lang 1', 'test2', 'test2', 'test2'),
+(12, 'test2', 'test lang 2', 'test2', 'test2', 'test2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `core3_diet_sched`
+--
+
+CREATE TABLE `core3_diet_sched` (
+  `id` int(11) NOT NULL,
+  `patient_name` varchar(255) NOT NULL,
+  `diet_plan_id` int(11) NOT NULL,
+  `created_at` date NOT NULL,
+  `until_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -42,7 +80,7 @@ CREATE TABLE `core3_med_avail` (
 --
 
 INSERT INTO `core3_med_avail` (`id`, `med_pack_id`, `patient_name`, `department`, `created_at`, `exam_date`) VALUES
-(14, 3, 'Aga Bungi', 'Outpatient', '2020-10-01 23:40:47', '2020-10-02 15:30:00');
+(3, 3, 'Aga Bungi', 'Outpatient', '2020-10-01 23:40:47', '2020-10-02 15:30:00');
 
 -- --------------------------------------------------------
 
@@ -194,6 +232,67 @@ INSERT INTO `core3_pharmacy_payment` (`id`, `total_cost`, `cash_amount`, `create
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `doctors_appointment_tbl`
+--
+
+CREATE TABLE `doctors_appointment_tbl` (
+  `apt_id` int(11) NOT NULL,
+  `apt_doctors_name` varchar(255) NOT NULL,
+  `apt_sched_date` date NOT NULL,
+  `apt_sched_time` varchar(255) NOT NULL,
+  `apt_sched_cause` varchar(255) NOT NULL,
+  `apt_patient_name` varchar(255) NOT NULL,
+  `apt_patient_lastvisit` date DEFAULT NULL,
+  `apt_remarks` varchar(255) NOT NULL,
+  `apt_sub_doctor` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `doctors_appointment_tbl`
+--
+
+INSERT INTO `doctors_appointment_tbl` (`apt_id`, `apt_doctors_name`, `apt_sched_date`, `apt_sched_time`, `apt_sched_cause`, `apt_patient_name`, `apt_patient_lastvisit`, `apt_remarks`, `apt_sub_doctor`) VALUES
+(1, 'DRA. ELSA JIMENEZ', '2021-01-12', '8AM', 'CHECK UP FOR MY WOUNDED LEG', 'GLADYS BALLESTEROS', '2021-01-11', 'SCHEDULED', NULL),
+(2, 'DR. RAMON KATIGBAK', '2021-01-11', '4PM', 'MONTHLY CHECK UP', 'MANALOTO, PEPITO G.', '2021-01-11', 'PATIENT UNATTENDED', 'NONE');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `patient_registration_tbl`
+--
+
+CREATE TABLE `patient_registration_tbl` (
+  `patient_id` int(11) NOT NULL,
+  `patient_fullname` varchar(255) NOT NULL,
+  `patient_birthdate` date NOT NULL,
+  `patient_age` int(11) NOT NULL,
+  `patient_citizenship` varchar(255) NOT NULL,
+  `patient_gender` varchar(255) NOT NULL,
+  `patient_civilstatus` varchar(255) NOT NULL,
+  `patient_fulladdress` varchar(255) NOT NULL,
+  `patient_occupation` varchar(255) NOT NULL,
+  `patient_mobileno` varchar(255) NOT NULL,
+  `patient_contact1` varchar(255) NOT NULL,
+  `patient_contact2` varchar(255) NOT NULL,
+  `patient_disorder` varchar(255) NOT NULL,
+  `patient_health_insurance` varchar(255) NOT NULL,
+  `patient_philhealth` varchar(255) NOT NULL,
+  `patient_prev_hospital` varchar(255) NOT NULL,
+  `patient_lastvisit` date DEFAULT NULL,
+  `patient_status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `patient_registration_tbl`
+--
+
+INSERT INTO `patient_registration_tbl` (`patient_id`, `patient_fullname`, `patient_birthdate`, `patient_age`, `patient_citizenship`, `patient_gender`, `patient_civilstatus`, `patient_fulladdress`, `patient_occupation`, `patient_mobileno`, `patient_contact1`, `patient_contact2`, `patient_disorder`, `patient_health_insurance`, `patient_philhealth`, `patient_prev_hospital`, `patient_lastvisit`, `patient_status`) VALUES
+(1, 'MANALOTO, PEPITO G.', '1849-11-12', 34, 'FILIPINO', 'MALE', 'SINGLE', 'blk 226 lot 8 won st. phase 8, north fairview quezon city', 'BUSINESSMAN', '09278539533', 'ALEJANDRO M. DUGAS / 09992314212', 'NOSI D. MAKITA / 09283991202', 'SCHIZOTYPAL PERSONALITY DISORDER', 'NONE', '11-201534404-7', 'NONE', NULL, 'Registered'),
+(2, 'GLADYS BALLESTEROS', '1994-11-23', 32, 'FILIPINO', 'FEMALE', 'SINGLE', 'blk 226 lot 8 won st. phase 8, north fairview quezon city', 'FREELANCER', '09278539533', 'ALEJANDRO M. DUGAS / 09992314212', 'NOSI D. MAKITA / 09283991202', 'SCHIZOTYPAL PERSONALITY DISORDER', 'NONE', '11-201531232-7', 'NONE', '2021-01-11', 'Registered');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -214,6 +313,18 @@ INSERT INTO `user` (`id`, `username`, `password`, `user_type`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `core3_diet_plan`
+--
+ALTER TABLE `core3_diet_plan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `core3_diet_sched`
+--
+ALTER TABLE `core3_diet_sched`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `core3_med_avail`
@@ -259,6 +370,18 @@ ALTER TABLE `core3_pharmacy_payment`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `doctors_appointment_tbl`
+--
+ALTER TABLE `doctors_appointment_tbl`
+  ADD PRIMARY KEY (`apt_id`);
+
+--
+-- Indexes for table `patient_registration_tbl`
+--
+ALTER TABLE `patient_registration_tbl`
+  ADD PRIMARY KEY (`patient_id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -267,6 +390,18 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `core3_diet_plan`
+--
+ALTER TABLE `core3_diet_plan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `core3_diet_sched`
+--
+ALTER TABLE `core3_diet_sched`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `core3_med_avail`
@@ -278,7 +413,7 @@ ALTER TABLE `core3_med_avail`
 -- AUTO_INCREMENT for table `core3_med_pack_inc`
 --
 ALTER TABLE `core3_med_pack_inc`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `core3_pharmacy_drugs`
@@ -303,6 +438,18 @@ ALTER TABLE `core3_pharmacy_drug_transaction`
 --
 ALTER TABLE `core3_pharmacy_payment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `doctors_appointment_tbl`
+--
+ALTER TABLE `doctors_appointment_tbl`
+  MODIFY `apt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `patient_registration_tbl`
+--
+ALTER TABLE `patient_registration_tbl`
+  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user`
