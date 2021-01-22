@@ -9,19 +9,22 @@ class medicalRecordsController extends Controller{
 		$this->view->render();
 	}
 
-	function medRecordsView($id){
+	function patientRecords($id){
 		$this->model('medicalRecords');
 		$this->view('medicalRecords'.DIRECTORY_SEPARATOR.'medRecordsView',['medView'=>$this->model->medicalRecordsView($id)]);
 		$this->view->page_title = 'Records view';
 		$this->view->render();
 	}
 
-	function medRecordsPdf($id){
+	function patientRecordsPdf($id){
 		$this->model('medicalRecords');
-		$this->view('medicalRecords'.DIRECTORY_SEPARATOR.'medRecords-pdf',['medRecPdf'=>$this->model->medicalRecordsView($id)]);
-		$this->view->page_title = 'Medical Information';
+		$this->view('medicalRecords'.DIRECTORY_SEPARATOR.'medRecords-pdf',['patientRecordPdf'=>$this->model->medicalRecordsView($id)]);
+		$this->view->page_title = 'Print Records';
 		$this->view->render();
 	}
+	
+
+	
 }
 
 ?>

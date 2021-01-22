@@ -36,11 +36,24 @@
           </div>
           <div class="col">
             <?php
-              $convert = new DateTime($this->view_data['medView'][0]['created_at']);
-              $date = $convert->format('M d, Y');
-              $time = $convert->format('h:m A');
-                echo "<small style='float:right;'><strong>Date:</strong> ".$date." <strong>Time:</strong> ".$time."</small>";
+             foreach ($this->view_data['patientRecord'] as $row) {
             ?>
+          <div class="row">
+            <div class="col"></div>
+            <div class="col">
+              <h4>Schedule:
+                <strong>
+                  <?php
+                    $convert = new DateTime($row['apt_sched_date']); //create datetime object with received data
+                      $date = $convert->format('M d, Y');
+                        echo "<strong>$date</strong> | "; 
+                    $convert1 = new DateTime($row['apt_sched_time']);
+                      $time = $convert->format('h:i:s A');
+                        echo "<strong>$time</strong>";
+                  ?>
+                </strong>
+              </h4>
+            </div>
           </div>
         </div>
         <div class="row">
@@ -54,24 +67,110 @@
             <h5>Address:</h5>
               <strong><?php echo $this->view_data['medView'][0]['patient_']; ?></strong>
           </div>
-          <div class="col">
-            <h5>Height:</h5>
-              <strong><?php echo $this->view_data['medView'][0]['height']; ?></strong>
+          <h5>Birthdate: 
+            <strong>
+              <?php
+                $convert = new DateTime($row['patient_birthdate']); //create datetime object with received data
+                            $date = $convert->format('M d, Y');
+                            echo "<strong>$date</strong> ";
+              ?>
+            </strong>
+          </h5>
+          <h5>Citizenship:
+            <strong>
+              <?php echo $row['patient_citizenship']; ?>
+            </strong>
+          </h5>
+          <h5>Gender:
+            <strong>
+              <?php echo $row['patient_gender']?>
+            </strong>
+          </h5>
+          <h5>Civil Status:
+            <strong>
+              <?php echo $row['patient_civilstatus']; ?>
+            </strong>
+          </h5>
+          <div style ="height:10px;" class="bg-dark"></div>
+          <h4>Hospital:
+            <strong>
+              <?php 
+                echo $row['patient_prev_hospital'];
+              ?>
+            </strong>
+          </h4>
+          <div class="row">
+            <div class="col">
+              <h4>Visit:
+                <?php 
+                  $convert = new DateTime($row['apt_patient_lastvisit']); //create datetime object with received data
+                            $date = $convert->format('M d, Y');
+                            echo "<strong>$date</strong> ";
+                ?>
+              </h4>
+            </div>
+            <div class="col">
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col"></div>
-          <div class="col">
-            <h5>Weight:</h5>
-              <strong><?php echo $this->view_data['medView'][0]['weight']; ?></strong>
+          <div class="row">
+            <div class="col">
+              <h4>Health Insurance:
+                <strong>
+                  <?php 
+                    echo $row['patient_health_insurance'];
+                  ?>
+                </strong>
+              </h4>
+            </div>
+            <div class="col">
+              <h4>Philhealth:
+                <strong>
+                  <?php 
+                    echo $row['patient_philhealth'];
+                  ?>
+                </strong>
+              </h4>
+            </div>
           </div>
+          <div style ="height:10px;" class="bg-dark"></div>
+            <h4>Doctor:
+              <strong>
+                <?php 
+                  echo $row['apt_doctors_name'];
+                ?>
+              </strong>
+            </h4>
+            <h4>Patient Disorder:
+              <strong>
+                <?php 
+                  echo $row['patient_disorder'];
+                ?>
+              </strong>
+            </h4>
+            <h4>Cause:
+              <strong>
+                <?php echo $row['apt_sched_cause'];?>
+              </strong>
+            </h4>
+            <h4>Remarks:
+              <strong>
+                <?php echo $row['apt_remarks'];?>
+              </strong>
+            </h4>
+            
+            <div style="height:auto;" class="text-light bg-dark"><h4>&nbsp;Emergency Contact</h4></div>
+            <?php 
+              echo "<h4><strong>&emsp;".$row['patient_contact1']."<br>&emsp;".
+                $row['patient_contact2']."</strong></h4>";
+            ?>
+          <?php 
+            }
+          ?>
         </div>
-        <hr>
-        <h5>Medical Type</h5>
-          <strong><?php echo $this->view_data['medView'][0]['medicalType'];
-          ?></strong>
-        <h5>Medical Problems</h5>
-        <strong><?php echo $this->view_data['medView'][0]['medicalProblems']; ?></strong>
+      
+        
+        
+        
   </div>
 
        
