@@ -31,7 +31,7 @@
         <div class="row">
           <div class="col">
             <a href="/medicalRecords/medRecordsPdf/" target="_blank" class="btn btn-danger"><i class="fas fa-file-pdf"> PDF</i></a>
-            <h4>Patient Name: <strong><?php echo $this->view_data['medView'][0]['firstName'] ?></strong>
+            <h4>Patient Name: <strong><?php echo $this->view_data['medView'][0]['patient_fullname'] ?></strong>
             </h4>
           </div>
           <div class="col">
@@ -45,14 +45,14 @@
         </div>
         <div class="row">
           <div class="col">
-            <medium>Contact No:<strong>&nbsp;<?php echo $this->view_data['medView'][0]['contactNo']; ?></strong></medium>
+            <medium>Contact No:<strong>&nbsp;<?php echo $this->view_data['medView'][0]['patient_mobileno']; ?></strong></medium>
           </div>
         </div>
         <hr>
         <div class="row">
           <div class="col">
             <h5>Address:</h5>
-              <strong><?php echo $this->view_data['medView'][0]['address']; ?></strong>
+              <strong><?php echo $this->view_data['medView'][0]['patient_']; ?></strong>
           </div>
           <div class="col">
             <h5>Height:</h5>

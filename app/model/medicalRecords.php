@@ -10,12 +10,12 @@ class medicalRecords extends Database{
 	}
 
 	function medicalRecordsView($id){
-		$query = "SELECT * FROM patient_registration_tbl";
+		$query = "SELECT * FROM patient_registration_tbl WHERE patient_id =?";
 		$stmt = $this->connect()->prepare($query);
 		$stmt->bindParam(1,$id);
 		$stmt->execute();
-		return $stmt->fetchAll();
-	}
+		return $stmt->fetchAll();			
+}
 }
 
 ?>

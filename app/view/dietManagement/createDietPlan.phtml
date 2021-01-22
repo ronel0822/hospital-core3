@@ -36,33 +36,151 @@
       ?>
           <form method="POST" action="addDietPlan">
             <div class="row">
-              <div class="col-sm-9">
+              <div class="col-sm-12">
                 <div class="container">
-                  <div class="form-group">
-                    <label for="name">Disease Name:</label>
-                    <input type="text" class="form-control" id="disease" placeholder="Enter Disease Name" name="disease">
+                <div class="form-group">
+                  <label for="selected">Select Patient:</label>
+                  <select name="patient_id" class="form-control">
+                    <option selected disabled>--SELECT PATIENT--</option>
+                    <?php
+                        foreach ($this->view_data['patientData'] as $row){
+                            echo "<option value='".$row['patient_id']."' >".$row['patient_fullname']."</option>";
+                        }
+                    ?>
+            
+                  </select>
+                  </div>
+                    <div class="form-group">
+                      <label for="name">Nutritionist First Name:</label>
+                      <input type="text" class="form-control" id="firstName" placeholder="Enter Nutritionist Name" name="firstName">
                     </div>
                     <div class="form-group">
-                    <label for="name">Description:</label>
-                    <input type="text" class="form-control" id="dp_desc" placeholder="Enter Description" name="dp_desc">
+                      <label for="name">Nutritionist Middle Name:</label>
+                      <input type="text" class="form-control" id="middleName" placeholder="Enter Nutritionist Middle Name" name="middleName">
                     </div>
                     <div class="form-group">
-                    <label for="breakfast">Break Fast:</label>
-                    <input type="text" class="form-control" id="breakfast" placeholder="Enter Break fast" name="breakfast">
+                      <label for="breakfast">Nutritionist Last Name:</label>
+                      <input type="text" class="form-control" id="lastName" placeholder="Enter Nutritionist Last Name" name="lastName">
                     </div>
-                    <div class="form-group">
-                    <label for="lunch">Lunch:</label>
-                    <input type="text" class="form-control" id="lunch" placeholder="Enter Lunch" name="lunch">
+                    <hr>
+                    <div class="row">   
+                        <div class="col-sm-4">
+                          <label for="monday">Monday</label>
+                          <div class="form-group">
+                            <label for="dinner">Breakfast:</label>
+                            <textarea type="text" class="form-control" id="m_breakfast" placeholder="Enter Break Fast" name="m_breakfast"></textarea>
+                          </div>
+                          <div class="form-group">
+                            <label for="lunch">Lunch:</label>
+                            <textarea type="text" class="form-control" id="m_lunch" placeholder="Enter Lunch" name="m_lunch"></textarea>
+                          </div>
+                          <div class="form-group">
+                            <label for="dinner">Dinner:</label>
+                            <textarea type="text" class="form-control" id="m_dinner" placeholder="Enter Dinner" name="m_dinner"></textarea>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <label for="monday">Tuesday</label>
+                          <div class="form-group">
+                            <label for="dinner">Breakfast:</label>
+                            <textarea type="text" class="form-control" id="t_breakfast" placeholder="Enter Break Fast" name="t_breakfast"></textarea>
+                          </div>
+                          <div class="form-group">
+                            <label for="lunch">Lunch:</label>
+                            <textarea type="text" class="form-control" id="t_lunch" placeholder="Enter Lunch" name="t_lunch"></textarea>
+                          </div>
+                          <div class="form-group">
+                            <label for="dinner">Dinner:</label>
+                            <textarea type="text" class="form-control" id="t_dinner" placeholder="Enter Dinner" name="t_dinner"></textarea>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <label for="monday">Wednesday</label>
+                          <div class="form-group">
+                            <label for="dinner">Breakfast:</label>
+                            <textarea type="text" class="form-control" id="w_breakfast" placeholder="Enter Break Fast" name="w_breakfast"></textarea>
+                          </div>
+                          <div class="form-group">
+                            <label for="lunch">Lunch:</label>
+                            <textarea type="text" class="form-control" id="w_lunch" placeholder="Enter Lunch" name="w_lunch"></textarea>
+                          </div>
+                          <div class="form-group">
+                            <label for="dinner">Dinner:</label>
+                            <textarea type="text" class="form-control" id="w_dinner" placeholder="Enter Dinner" name="w_dinner"></textarea>
+                          </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                    <label for="dinner">Dinner:</label>
-                    <textarea type="text" class="form-control" id="dinner" placeholder="Enter Dinner" name="dinner"></textarea>
+                    <hr>
+                    <div class="row">   
+                        <div class="col-sm-4">
+                          <label for="monday">Thursday</label>
+                          <div class="form-group">
+                            <label for="dinner">Breakfast:</label>
+                            <textarea type="text" class="form-control" id="th_breakfast" placeholder="Enter Break Fast" name="th_breakfast"></textarea>
+                          </div>
+                          <div class="form-group">
+                            <label for="lunch">Lunch:</label>
+                            <textarea type="text" class="form-control" id="th_lunch" placeholder="Enter Lunch" name="th_lunch"></textarea>
+                          </div>
+                          <div class="form-group">
+                            <label for="dinner">Dinner:</label>
+                            <textarea type="text" class="form-control" id="th_dinner" placeholder="Enter Dinner" name="th_dinner"></textarea>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <label for="monday">Friday</label>
+                          <div class="form-group">
+                            <label for="dinner">Breakfast:</label>
+                            <textarea type="text" class="form-control" id="f_breakfast" placeholder="Enter Break Fast" name="f_breakfast"></textarea>
+                          </div>
+                          <div class="form-group">
+                            <label for="lunch">Lunch:</label>
+                            <textarea type="text" class="form-control" id="f_lunch" placeholder="Enter Lunch" name="f_lunch"></textarea>
+                          </div>
+                          <div class="form-group">
+                            <label for="dinner">Dinner:</label>
+                            <textarea type="text" class="form-control" id="f_dinner" placeholder="Enter Dinner" name="f_dinner"></textarea>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <label for="monday">Saturday</label>
+                          <div class="form-group">
+                            <label for="dinner">Breakfast:</label>
+                            <textarea type="text" class="form-control" id="sa_breakfast" placeholder="Enter Break Fast" name="sa_breakfast"></textarea>
+                          </div>
+                          <div class="form-group">
+                            <label for="lunch">Lunch:</label>
+                            <textarea type="text" class="form-control" id="sa_lunch" placeholder="Enter Lunch" name="sa_lunch"></textarea>
+                          </div>
+                          <div class="form-group">
+                            <label for="dinner">Dinner:</label>
+                            <textarea type="text" class="form-control" id="sadinner" placeholder="Enter Dinner" name="sa_dinner"></textarea>
+                          </div>
+                        </div>
+                    </div>
+                    <div>
+                    <hr>
+                    <div class="col-sm-4">
+                          <label for="monday">Sunday</label>
+                          <div class="form-group">
+                            <label for="dinner">Breakfast:</label>
+                            <textarea type="text" class="form-control" id="su_breakfast" placeholder="Enter Break Fast" name="su_breakfast"></textarea>
+                          </div>
+                          <div class="form-group">
+                            <label for="lunch">Lunch:</label>
+                            <textarea type="text" class="form-control" id="su_lunch" placeholder="Enter Lunch" name="su_lunch"></textarea>
+                          </div>
+                          <div class="form-group">
+                            <label for="dinner">Dinner:</label>
+                            <textarea type="text" class="form-control" id="su_dinner" placeholder="Enter Dinner" name="su_dinner"></textarea>
+                          </div>
+                        </div>
                     </div>
                 </div>
-              </div> 
-            <div class="col-sm-6">
+            </div> 
+            <div class="col-sm-12">
               <div class="container">
-                <button type="submit" name="dietPlan_btn" class="btn btn-primary">Submit</button>
+                <button type="submit" name="dietPlan_btn" class="btn btn-primary" style="margin-left:10px">Submit</button>
               </div>
             </div> 
           </div>
