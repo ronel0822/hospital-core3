@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 19, 2021 at 10:13 PM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.7
+-- Generation Time: Jan 22, 2021 at 12:50 PM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.4.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -44,7 +43,10 @@ CREATE TABLE `core3_diet_plan` (
 INSERT INTO `core3_diet_plan` (`id`, `Disease`, `dp_desc`, `Breakfast`, `Lunch`, `Dinner`) VALUES
 (10, 'test1', 'test lang ', 'test1', 'test1', 'test1'),
 (11, 'test2', 'test lang 1', 'test2', 'test2', 'test2'),
-(12, 'test2', 'test lang 2', 'test2', 'test2', 'test2');
+(12, 'test2', 'test lang 2', 'test2', 'test2', 'test2'),
+(13, 'test1000', 'testtest', 'test1000100', 'testtest', 'testetst'),
+(14, 'test101010101', 'test101010101', 'test101010101', 'test101010101', 'test101010101'),
+(15, 'test11111', 'test11111', 'test11111', 'test11111', 'test11111');
 
 -- --------------------------------------------------------
 
@@ -80,7 +82,8 @@ CREATE TABLE `core3_med_avail` (
 --
 
 INSERT INTO `core3_med_avail` (`id`, `med_pack_id`, `patient_name`, `department`, `created_at`, `exam_date`) VALUES
-(3, 3, 'Aga Bungi', 'Outpatient', '2020-10-01 23:40:47', '2020-10-02 15:30:00');
+(3, 3, 'Aga Bungi', 'Outpatient', '2020-10-01 23:40:47', '2020-10-02 15:30:00'),
+(14, 3, 'Aga Bungi', 'Outpatient', '2020-10-01 23:40:47', '2020-10-02 15:30:00');
 
 -- --------------------------------------------------------
 
@@ -104,7 +107,14 @@ INSERT INTO `core3_med_pack` (`id`, `mp_name`, `mp_price`, `mp_desc`, `mp_status
 (2, 'Pregnant Package', 1000, 'For Health treatment', 'Active'),
 (3, 'Student Medical Package', 1200, 'For Educational purpose examination', 'Active'),
 (4, 'Swab Test', 3500, 'testing test', 'Active'),
-(5, 'Rapid test', 2000, 'Fast testing', 'Inactive');
+(5, 'Rapid test', 2000, 'Fast testing', 'Inactive'),
+(6, 'qwe', 223, 'adsfaf', 'Active'),
+(7, '', 0, '', 'Active'),
+(8, 'This is Nel Test', 123, 'This is just a test.', 'Active'),
+(9, 'Testing Nel 2', 123, 'This is test 2', 'Active'),
+(10, 'Testing Nel 3', 3, 'This is test 3', 'Active'),
+(11, 'This is Nel Test', 4, 'This is test 4', 'Active'),
+(12, 'This is Nel Test', 5, 'This is test 5', 'Active');
 
 -- --------------------------------------------------------
 
@@ -126,7 +136,15 @@ INSERT INTO `core3_med_pack_inc` (`id`, `testname`, `med_pack_id`) VALUES
 (40, 'Ultrasound', 2),
 (41, 'X-ray', 3),
 (44, 'Swab test', 4),
-(45, 'Rapid test kit', 5);
+(45, 'Rapid test kit', 5),
+(46, 'test', 9),
+(47, 'test 3', 10),
+(48, 'Test 4', 11),
+(49, 'test 4', 11),
+(50, 'test 4', 11),
+(51, 'Test 5', 12),
+(52, 'Test 5', 12),
+(53, 'Test 5', 12);
 
 -- --------------------------------------------------------
 
@@ -395,7 +413,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `core3_diet_plan`
 --
 ALTER TABLE `core3_diet_plan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `core3_diet_sched`
@@ -413,7 +431,7 @@ ALTER TABLE `core3_med_avail`
 -- AUTO_INCREMENT for table `core3_med_pack_inc`
 --
 ALTER TABLE `core3_med_pack_inc`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `core3_pharmacy_drugs`
@@ -438,18 +456,6 @@ ALTER TABLE `core3_pharmacy_drug_transaction`
 --
 ALTER TABLE `core3_pharmacy_payment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `doctors_appointment_tbl`
---
-ALTER TABLE `doctors_appointment_tbl`
-  MODIFY `apt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `patient_registration_tbl`
---
-ALTER TABLE `patient_registration_tbl`
-  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user`
