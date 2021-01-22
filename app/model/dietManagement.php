@@ -3,13 +3,14 @@
 class dietManagement extends Database{
 
 	//Insert Diet Plan
-	function addDietPlan($disease,$breakfast,$lunch,$dinner){
-    	$query = "INSERT INTO core3_diet_plan VALUES (null,?,?,?,?);";
+	function addDietPlan($disease,$breakfast,$dp_desc,$lunch,$dinner){
+    	$query = "INSERT INTO core3_diet_plan VALUES (null,?,?,?,?,?);";
 		$stmt = $this->connect()->prepare($query);
 		$stmt->bindParam(1,$disease);
 		$stmt->bindParam(2,$breakfast);
-		$stmt->bindParam(3,$lunch);
-		$stmt->bindParam(4,$dinner);
+		$stmt->bindParam(3,$dp_desc);
+		$stmt->bindParam(4,$lunch);
+		$stmt->bindParam(5,$dinner);
 		if($stmt->execute()){
 			return true;
 		}else{

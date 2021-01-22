@@ -26,7 +26,7 @@ class dietManagementController extends Controller{
 	public function addDietPlan(){
 		$this->model('dietManagement');
 		if(isset($_POST['dietPlan_btn'])){
-			if($this->model->addDietPlan($_POST['disease'],$_POST['breakfast'],$_POST['lunch'],$_POST['dinner'])){
+			if($this->model->addDietPlan($_POST['disease'],$_POST['breakfast'],$_POST['dp_desc'],$_POST['lunch'],$_POST['dinner'])){
 				$class = "alert alert-success";
 				$message = "Diet Plan Created!";
 				$this->view('dietManagement'.DIRECTORY_SEPARATOR.'createDietPlan');
