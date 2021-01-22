@@ -27,19 +27,18 @@ if(isset($row['apt_id'])){
 		$pdf->SetFont('Arial','B','14');
 		$pdf->cell(0,0,'',1,1,0);
 		$pdf->Cell(0,20,$row['patient_fullname'],0,1,2);
-		$pdf->Cell(0  ,4,'',0,1);
-
-		$pdf->Cell(0  ,4,'',0,1);
-
-
-		$pdf->Cell(0  ,2.5,'TOTAL :',0,0,'C');
-		$pdf->Cell(5  ,2.5,"PHP ",0,1,'R');
-
-		$pdf->Cell(0  ,4,'',0,1);
-
-		$pdf->Cell(0  ,4,'THANK YOU FOR TRUSTING US!',0,1,'C');
-		$pdf->Cell(0  ,2,'PLEASE COME AGAIN!',0,1,'C');
-
+		$pdf->SetFont('Arial','','12');
+		$pdf->Cell(0,-10,$row['patient_fulladdress'],0,1,2);
+		$pdf->Cell(0,20,$row['patient_mobileno'],0,1,2);
+			$convert = new DateTime($row['patient_birthdate']); 
+              	$date = $convert->format('M d, Y');             
+		$pdf->Cell(0,-10,$date,0,1,2);
+		$pdf->Cell(0,20,$row['patient_citizenship'],0,1,2);
+		$pdf->Cell(0,-10,$row['patient_gender'],0,1,2);
+		$pdf->Cell(0,20,$row['patient_civilstatus'],0,1,2);
+		$pdf->Cell(0,-10,$row['patient_occupation'],0,1,2);
+		$pdf->Cell(0,15,'',0,1,0);
+		$pdf->Cell(0,0,'',1,1,0);
 
 		$pdf->Output();
 	}
