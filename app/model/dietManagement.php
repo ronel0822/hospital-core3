@@ -82,7 +82,7 @@ class dietManagement extends Database{
 			$stmt->execute();
 			return $stmt->fetchAll();	
 		}
-		
+
     function getIdDate($id){
 			$query = "SELECT *
 						FROM core3_diet_plan

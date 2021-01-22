@@ -37,28 +37,28 @@
                   <p><b>Break Fast: </b> <br><?php echo ucfirst($this->view_data['monday'][0]['breakfast']); ?></p><br>
                   <p><b>Lunch: </b> <br><?php echo ucfirst($this->view_data['monday'][0]['lunch']); ?></p><br>
                   <p><b>Dinner: </b> <br><?php echo ucfirst($this->view_data['monday'][0]['dinner']); ?></p><br>
-                  <input value="edit" href="#" class="btn btn-secondary">
+                  <input value="edit" href="#" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
                 </div>
                 <div class="col-sm-3">
                   <h4>Tuesday</h4>
                   <p><b>Break Fast: </b> <br><?php echo ucfirst($this->view_data['tuesday'][0]['breakfast']); ?></p><br>
                   <p><b>Lunch: </b> <br><?php echo ucfirst($this->view_data['tuesday'][0]['lunch']); ?></p><br>
                   <p><b>Dinner: </b> <br><?php echo ucfirst($this->view_data['tuesday'][0]['dinner']); ?></p><br>
-                  <input value="edit" href="#" class="btn btn-secondary">
+                  <input value="edit" href="#" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
                 </div>
                 <div class="col-sm-3">
                   <h4>wednesday</h4>
                   <p><b>Break Fast: </b> <br><?php echo ucfirst($this->view_data['wednesday'][0]['breakfast']); ?></p><br>
                   <p><b>Lunch: </b> <br><?php echo ucfirst($this->view_data['wednesday'][0]['lunch']); ?></p><br>
                   <p><b>Dinner: </b> <br><?php echo ucfirst($this->view_data['wednesday'][0]['dinner']); ?></p><br>
-                  <input value="edit" href="#" class="btn btn-secondary">
+                  <input value="edit" href="#" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
                 </div>
                 <div class="col-sm-3">
                   <h4>Thursday</h4>
                   <p><b>Break Fast: </b> <br><?php echo ucfirst($this->view_data['thursday'][0]['breakfast']); ?></p><br>
                   <p><b>Lunch: </b> <br><?php echo ucfirst($this->view_data['thursday'][0]['lunch']); ?></p><br>
                   <p><b>Dinner: </b> <br><?php echo ucfirst($this->view_data['thursday'][0]['dinner']); ?></p><br>
-                  <input value="edit" href="#" class="btn btn-secondary">
+                  <input value="edit" href="#" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
                 </div>
               </div>
               <hr>
@@ -68,21 +68,21 @@
                   <p><b>Break Fast: </b> <br><?php echo ucfirst($this->view_data['friday'][0]['breakfast']); ?></p><br>
                   <p><b>Lunch: </b> <br><?php echo ucfirst($this->view_data['friday'][0]['lunch']); ?></p><br>
                   <p><b>Dinner: </b> <br><?php echo ucfirst($this->view_data['friday'][0]['dinner']); ?></p><br>
-                  <input value="edit" href="#" class="btn btn-secondary">
+                  <input value="edit" href="#" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
                 </div>
                 <div class="col-sm-3">
                   <h4>Saturday</h4>
                   <p><b>Break Fast: </b> <br><?php echo ucfirst($this->view_data['saturday'][0]['breakfast']); ?></p><br>
                   <p><b>Lunch: </b> <br><?php echo ucfirst($this->view_data['saturday'][0]['lunch']); ?></p><br>
                   <p><b>Dinner: </b> <br><?php echo ucfirst($this->view_data['saturday'][0]['dinner']); ?></p><br>
-                  <input value="edit" href="#" class="btn btn-secondary">
+                  <input value="edit" href="#" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
                 </div>
                 <div class="col-sm-3">
                   <h4>Sunday</h4>
                   <p><b>Break Fast: </b> <br><?php echo ucfirst($this->view_data['sunday'][0]['breakfast']); ?></p><br>
                   <p><b>Lunch: </b> <br><?php echo ucfirst($this->view_data['sunday'][0]['lunch']); ?></p><br>
                   <p><b>Dinner: </b> <br><?php echo ucfirst($this->view_data['sunday'][0]['dinner']); ?></p><br>
-                  <input value="edit" href="#" class="btn btn-secondary">
+                  <input value="edit" href="#" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
                 </div>
               </div>
            </div>
@@ -92,7 +92,28 @@
   </div>
 </div>
 
-
+<!-- Modal -->
+<form action="/dietManagement/addStock/<?php echo $this->view_data['monday'][0]['diet_id']; ?>" method="POST">
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </form>
 <?php
     include VIEW . 'footer.phtml';
 ?>
