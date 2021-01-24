@@ -79,7 +79,15 @@ class medPackageController extends Controller{
 				$this->view->page_title = 'Add Patient Avail';
 				$this->view->render();
 			}
-		}
+			}else{
+				$alert = "alert alert-warning";
+				$message = "No data found. <a href='/medPackage/medCreatePackage'>Click here.</a> to refresh.";
+				$this->view('medPackage'.DIRECTORY_SEPARATOR.'medCreatePackage',[
+					'medCreatePackage'=>$this->model->getAllAvailPackage(),
+					'alert'=>$alert,'message'=>$message]);
+				$this->view->page_title = 'Medical Package';
+				$this->view->render();
+			}
 	}
 
 
