@@ -33,8 +33,6 @@
         <thead>
           <tr>
             <th>#</th>
-            <th class="th-sm">ID
-            </th>
             <th class="th-sm">Patient Name
             </th>
             <th class="th-sm">Package Name
@@ -56,7 +54,6 @@
             ?>
           <tr>
             <td><?php echo $count++ ?></td>
-            <td><?php echo $row['id'] ?></td>
             <td><?php echo $row['patient_name'] ?></td>
             <td><?php echo $row['mp_name'] ?></td>
             <td><?php echo $row['department'] ?></td>
@@ -74,7 +71,55 @@
     </section>
     <!-- /.content -->
   </div>
-
+<!-- Modal -->
+<form method="POST" action="addPatientAvail">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Adding Patient Avail</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body">
+          <div class="form-group">
+          <label for="name">Patient Name:</label>
+          <input type="text" name="patientName" class="form-control" id="name" placeholder="Enter Patient Name">
+        </div>
+        <div class="form-group">
+         <label for="package">Select Medical Package:</label>
+          <select name="medPackId" class="form-control">
+            <option selected disabled>--SELECT PACKAGE--</option>
+              <?php
+                foreach ($this->view_data['addPatientAvail'] as $addPatientAvail) {
+                  echo "<option value='".$addPatientAvail['id']."' >".$addPatientAvail['mp_name']."</option>";
+                }
+              ?>
+            </select>
+          </div>
+            <div class="form-group">
+              <label for="name">Department:</label>
+              <select name="department" class="form-control">
+                <option selected disabled>--SELECT DEPARTMENT--</option>
+                <option value="Inpatient" >Inpatient</option>
+                <option value="Outpatient" >Outpatient</option>
+              </select>
+            </div>
+          </select>
+          <div class="form-group">
+            <label for="exam_date">Examination date:</label>
+            <input type="datetime-local" name="exam_date" date-format="YYYY-mm-dd HH:MI:SS" class="form-control" id="exam_date">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-primary" name="save" value="Save">
+      </div>
+    </div>
+  </div>
+</div>
+</form>
 <?php
   include VIEW . 'footer.phtml'; 
 ?>
