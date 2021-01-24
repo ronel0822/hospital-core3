@@ -84,4 +84,20 @@ class medPackage extends Database{
 		return $stmt->fetchAll();
 	}
 
+	//Insert Create Package
+	function addPatientAvail($medPackId,$patientName,$department,$exam_date){
+    	$query = "INSERT INTO core3_med_avail 
+				VALUES (null,?,?,?,now(),?)";
+		$stmt = $this->connect()->prepare($query);
+		$stmt->bindParam(1,$medPackId);
+		$stmt->bindParam(2,$patientName);
+		$stmt->bindParam(3,$department);
+		$stmt->bindParam(4,$exam_date);
+		if($stmt->execute()){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 }

@@ -2,7 +2,6 @@
 <?php 
   include VIEW . 'header.phtml'; 
 ?>
-
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper" id="content">
     <!-- Content Header (Page header) -->
@@ -28,7 +27,16 @@
 
     <!-- Main content -->
     <section class="content" >
-
+    <a class="btn btn-primary text-white"  style="float:right;" data-toggle="modal" data-target="#exampleModal">Add Patient Avail</a>
+    <?php
+        if(isset($this->view_data['message'])){
+            ?>
+              <div class="alert alert-<?=$this->view_data['alert']?>">
+                <?=$this->view_data['message']?>
+              </div>
+            <?php
+        }
+      ?>
     <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
           <tr>
@@ -67,7 +75,6 @@
             ?>
         </tbody>
       </table>
-       
     </section>
     <!-- /.content -->
   </div>
@@ -92,7 +99,7 @@
           <select name="medPackId" class="form-control">
             <option selected disabled>--SELECT PACKAGE--</option>
               <?php
-                foreach ($this->view_data['addPatientAvail'] as $addPatientAvail) {
+                foreach ($this->view_data['viewPackage'] as $addPatientAvail) {
                   echo "<option value='".$addPatientAvail['id']."' >".$addPatientAvail['mp_name']."</option>";
                 }
               ?>

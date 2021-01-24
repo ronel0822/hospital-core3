@@ -21,8 +21,9 @@ class medPackageController extends Controller{
 	public function medPackageAvailList(){
 		$this->model('medPackage');
 		$this->view('medPackage'.DIRECTORY_SEPARATOR.'medPackageAvailList',[
-			'availData'=>$this->model->getAllAvailPackage()]);
-		$this->view->page_title = 'Medical Package';
+			'availData'=>$this->model->getAllAvailPackage(),
+			'viewPackage'=>$this->model->getAllMedPackage()]);
+		$this->view->page_title = 'Medical Package Avail List';
 		$this->view->render();
 	}
 
@@ -48,10 +49,10 @@ class medPackageController extends Controller{
 			if($this->model->createNewPackage($_POST['id'],$_POST['packageName'],$_POST['packagePrice'],$_POST['packageDesc'])){
 				if(isset($_POST['name'])){
 					if($this->model->insertInclusion($_POST['name'],$_POST['id'])){
-						$class = "alert alert-success";
+						$alert = "alert alert-success";
 						$message = "Package Created Successfully!";
-						$this->view('medPackage'.DIRECTORY_SEPARATOR.'medPackageList',['mainData'=>$this->model->getAllMedPackage(),'class'=>$class,'message'=>$message]);
-						$this->view->page_title = 'Medical Package';
+						$this->view('medPackage'.DIRECTORY_SEPARATOR.'medPackageList',['mainData'=>$this->model->getAllMedPackage(),'alert'=>$alert,'message'=>$message]);
+						$this->view->page_title = 'Add Medical Package';
 						$this->view->render();
 					}
 				}
@@ -65,6 +66,19 @@ class medPackageController extends Controller{
 				'class'=>$class,'message'=>$message]);
 			$this->view->page_title = 'Medical Package';
 			$this->view->render();
+		}
+	}
+
+	public function addPatientAvail(){
+		$this->model('medPackage');
+		if(isset($_POST['save'])){
+			if($this->model->addPatientAvail($_POST['medPackId'],$_POST['patientName'],$_POST['department'],$_POST['exam_date'])){
+				$alert = "alert alert-success";
+				$message = "Package Created Successfully!";
+				$this->view('medPackage'.DIRECTORY_SEPARATOR.'medPackageAvailList',['availData'=>$this->model->getAllAvailPackage(),'alert'=>$alert,'message'=>$message]);
+				$this->view->page_title = 'Add Patient Avail';
+				$this->view->render();
+			}
 		}
 	}
 
