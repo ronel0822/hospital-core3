@@ -28,8 +28,13 @@
 
     <!-- Main content -->
     <section class="content" >
-        
-        <div class="container">
+        <div class="row">
+          <div class="col">
+            <a href="/medicalRecords/medRecordsPdf/" target="_blank" class="btn btn-danger"><i class="fas fa-file-pdf"> PDF</i></a>
+            <h4>Patient Name: <strong><?php echo $this->view_data['medView'][0]['patient_fullname'] ?></strong>
+            </h4>
+          </div>
+          <div class="col">
             <?php
              foreach ($this->view_data['patientRecord'] as $row) {
             ?>
@@ -50,42 +55,17 @@
               </h4>
             </div>
           </div>
-          <div class="row">
-            <div class="col">
-              <h4>Patient Name: <strong><?php echo $row['patient_fullname']; ?></strong></h4>
-            </div>
-            <div class="col">
-              <?php
-                $status = $row['patient_status'];
-                $color = "";
-                if($status=="Registered"){
-                  $color = "green";
-                }else{
-                  $color = "#ff9966";
-                }
-              ?>
-              <h5>Status:
-                <span style="color:<?php echo $color; ?>"><strong><?php echo $status; ?></strong></span>
-              </h5>
-            </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <medium>Contact No:<strong>&nbsp;<?php echo $this->view_data['medView'][0]['patient_mobileno']; ?></strong></medium>
           </div>
-          <div class="row">
-            <div class="col">
-              <h5>Address:
-                <strong>
-                <?php
-                  echo ucfirst($row['patient_fulladdress']."&nbsp;|&nbsp;".$row['patient_mobileno']);
-                ?>
-                </strong>
-              </h5>
-            </div>
-            <div class="col">
-              <h5>Occupation:
-                <strong>
-                  <?php echo $row['patient_occupation'];?>
-                </strong>
-              </h5>
-            </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col">
+            <h5>Address:</h5>
+              <strong><?php echo $this->view_data['medView'][0]['patient_']; ?></strong>
           </div>
           <h5>Birthdate: 
             <strong>
@@ -186,13 +166,8 @@
           <?php 
             }
           ?>
-        </div>
-      
-        
-        
-        
+        </div> 
   </div>
-
        
 
     </section>
