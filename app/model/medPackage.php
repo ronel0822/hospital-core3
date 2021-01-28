@@ -39,7 +39,7 @@ class medPackage extends Database{
 				ON core3_med_avail.med_pack_id = core3_med_pack.id
 				INNER JOIN core3_med_pack_inc 
 				ON core3_med_pack.id = core3_med_pack_inc.med_pack_id
-				WHERE core3_med_avail.id = ?";
+				WHERE core3_med_avail.med_pack_id = ?";
 		$stmt = $this->connect()->prepare($query);
 		$stmt->bindParam(1,$id);
 		$stmt->execute();
@@ -98,6 +98,20 @@ class medPackage extends Database{
 		}else{
 			return false;
 		}
+	}
+
+	//Viewing of Availed Report
+	function AvailedReport($id){
+		$query = "SELECT * FROM core3_med_avail 
+				INNER JOIN core3_med_pack
+				ON core3_med_avail.med_pack_id = core3_med_pack.id
+				INNER JOIN core3_med_pack_inc 
+				ON core3_med_pack.id = core3_med_pack_inc.med_pack_id
+				WHERE core3_med_avail.med_pack_id = ? GROUP BY patient_name Desc";
+		$stmt = $this->connect()->prepare($query);
+		$stmt->bindParam(1,$id);
+		$stmt->execute();
+		return $stmt->fetchAll();
 	}
 
 }

@@ -99,7 +99,8 @@ class dietManagement extends Database{
 						LEFT JOIN diet_saturday
 						ON core3_diet_plan.id = diet_saturday.diet_id
 						LEFT JOIN diet_sunday
-						ON core3_diet_plan.id = diet_sunday.diet_id WHERE core3_diet_plan.id = ?";
+						ON core3_diet_plan.id = diet_sunday.diet_id 
+						WHERE core3_diet_plan.id = ?";
 			$stmt = $this->connect()->prepare($query);
 			$stmt->bindParam(1,$id);
 			$stmt->execute();
@@ -116,7 +117,33 @@ class dietManagement extends Database{
 		}else{
 			return false;
 		}
-    }*/
+	}*/
+	
+	//Viewing of Diet Report
+	function dietReport($id){
+		$query = "SELECT *
+			FROM core3_diet_plan
+			LEFT JOIN diet_monday
+			ON core3_diet_plan.id = diet_monday.diet_id
+			LEFT JOIN diet_tuesday
+			ON core3_diet_plan.id = diet_tuesday.diet_id
+			LEFT JOIN diet_wednesday
+			ON core3_diet_plan.id = diet_wednesday.diet_id
+			LEFT JOIN diet_thursday
+			ON core3_diet_plan.id = diet_thursday.diet_id
+			LEFT JOIN diet_friday
+			ON core3_diet_plan.id = diet_friday.diet_id
+			LEFT JOIN diet_saturday
+			ON core3_diet_plan.id = diet_saturday.diet_id
+			LEFT JOIN diet_sunday
+			ON core3_diet_plan.id = diet_sunday.diet_id 
+			WHERE core3_diet_plan.id = ? 
+			GROUP BY patient_id";
+		$stmt = $this->connect()->prepare($query);
+		$stmt->bindParam(1,$id);
+		$stmt->execute();
+		return $stmt->fetchAll();
+	}
 
 }
                 

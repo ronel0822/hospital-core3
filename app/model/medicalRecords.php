@@ -15,7 +15,7 @@ class medicalRecords extends Database{
 		$stmt->bindParam(1,$id);
 		$stmt->execute();
 		return $stmt->fetchAll();			
-}
+	}
 }
 
 ?>

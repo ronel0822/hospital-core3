@@ -1,0 +1,67 @@
+<?php
+if(isset($this->view_data['AvailReport'][0]['patient_name'])){
+
+		require('fpdf17/fpdf.php');
+
+		//A4 width : 219mm
+		//default margin : 10mm each side
+		//writable horizontal : 219 (10*2) = 189mm
+
+		$pdf = new FPDF('P','mm',array(50,90));
+
+		$pdf->AddPage();
+
+		//set font to arial, bold, 14pt
+		$pdf->SetFont('Times','B','8');
+
+		//Cell( width, height, text, border, end line, [align] )
+		$pdf->Cell(0,1, 'Availed Medical Package', 0,1,'C');
+
+		$pdf->SetFont('Times','B','4');
+
+		$pdf->Cell(0,5, '#1071 Brgy Kaligayahan,', 0,1,'C');
+        $pdf->Cell(0,0, 'Quirino Highway Novaliches.', 0,0,'C');
+
+		$pdf->Cell(0  ,1,'',0,1);
+        $convert = new DateTime($this->view_data['medPackageAvailView'][0]["created_at"]); //create datetime object with received data
+        $date = $convert->format('M d, Y'); 
+        $time = $convert->format('h:m A');
+		$pdf->Cell(0  ,2,"Date: ".$date." Time: ".$time,0,1,'C');
+
+		$pdf->Cell(0,4,'- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -',0,1,'C');
+        
+        $patient_name = ucfirst($this->view_data['AvailReport'][0]["patient_name"]);
+        $package_name = ucfirst($this->view_data['AvailReport'][0]["mp_name"]);
+        $price = ($this->view_data['AvailReport'][0]["mp_price"]);
+        $desc = ucfirst($this->view_data['AvailReport'][0]["mp_desc"]);
+        $department = ucfirst($this->view_data['AvailReport'][0]["department"]);
+        $exam_date = ($this->view_data['AvailReport'][0]["exam_date"]);
+        
+
+        $pdf->Cell(0  ,2,'Patient Name: '.$patient_name,0,1,'L');
+        $pdf->Cell(0  ,2,'Type of Patient: '.$department,0,1,'L');
+        $pdf->Cell(0  ,4,'',0,1);
+        $pdf->Cell(0  ,2,'Package Name: '.$package_name,0,1,'L');
+        $pdf->Cell(0  ,2,'Package Price: Php '.$price,0,1,'L');
+        $pdf->Cell(0  ,2,'Package Description: '.$desc,0,1,'L');
+        $pdf->Cell(0  ,4,'',0,1);
+        $pdf->Cell(0  ,2,'Package Included:',0,1,'L');
+        foreach($this->view_data['medPackageAvailView'] as $rows){
+            $inclusions = $rows['testname'];
+            $pdf->Cell(0  ,2,'* '.$inclusions,0,1,'C');
+        }
+        $pdf->Cell(0  ,2,'',0,1);
+        $convert1 = new DateTime($this->view_data['medPackageAvailView'][0]["exam_date"]);
+        $date1 = $convert1->format('M d, Y'); 
+        $time1 = $convert1->format('h:m A');
+		$pdf->Cell(0  ,2,"Date Examin: ".$date1." Time: ".$time1,0,1,'C');
+        $pdf->Cell(0  ,0,'',0,1);
+        $pdf->Cell(0,4,'- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -',0,1,'C');
+		$pdf->Cell(0  ,4,'THANK YOU FOR TRUSTING US!',0,1,'C');
+		$pdf->Cell(0  ,2,'PLEASE COME AGAIN!',0,1,'C');
+
+
+		$pdf->Output();
+}
+
+?>

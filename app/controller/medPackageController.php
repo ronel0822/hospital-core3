@@ -30,7 +30,9 @@ class medPackageController extends Controller{
 	public function medPackageAvailView($id){
 		$this->model('medPackage');
 		$this->view('medPackage'.DIRECTORY_SEPARATOR.'medPackageAvailView',[
-			'medPackageAvailView'=>$this->model->viewAvailInfo($id)]);
+			'medPackageAvailView'=>$this->model->viewAvailInfo($id),
+			'medPackageInfo1'=>$this->model->getPackageListInfo($id),
+			'AvailReport'=>$this->model->AvailedReport($id)]);
 		$this->view->page_title = 'Medical Package';
 		$this->view->render();
 	}
@@ -90,5 +92,14 @@ class medPackageController extends Controller{
 			}
 	}
 
+	function AvailedReport($id){
+		$this->model('medPackage');
+		$this->view('medPackage'.DIRECTORY_SEPARATOR.'medAvailReport',[
+			'AvailReport'=>$this->model->AvailedReport($id),
+			'medPackageAvailView'=>$this->model->viewAvailInfo($id),
+			'medPackageInfo1'=>$this->model->getPackageListInfo($id)]);
+		$this->view->page_title = 'Availed Report';
+		$this->view->render();
+	}
 
 }

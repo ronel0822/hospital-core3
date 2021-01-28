@@ -1,0 +1,96 @@
+<?php
+if(isset($this->view_data['dietPlanView'][0]['patient_id'])){
+
+		require('fpdf17/fpdf.php');
+
+		//A4 width : 219mm
+		//default margin : 10mm each side
+		//writable horizontal : 219 (10*2) = 189mm
+
+		$pdf = new FPDF('P','mm',array(60,110));
+
+		$pdf->AddPage();
+
+		//set font to arial, bold, 14pt
+		$pdf->SetFont('Times','B','8');
+
+		//Cell( width, height, text, border, end line, [align] )
+		$pdf->Cell(0,2, 'Weekly Diet Plan Report', 0,1,'C');
+
+		$pdf->SetFont('Times','B','4');
+        $pdf->Cell(0  ,0,'',0,1);
+        $pdf->Cell(0,3,'- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -',0,1,'C');
+        $pdf->Cell(0  ,1,'',0,1);
+        $patient_name = ucfirst($this->view_data['dietPlanView'][0]["patient_fullname"]);
+        $Nutritionist_fn = ucfirst($this->view_data['dietPlanView'][0]["firstname"]);
+        $Nutritionist_mn = ucfirst($this->view_data['dietPlanView'][0]["middlename"]);
+        $Nutritionist_ln = ucfirst($this->view_data['dietPlanView'][0]["lastname"]);
+        $Breakfast_M = ucfirst($this->view_data['monday'][0]["breakfast"]);
+        $Lunch_M = ucfirst($this->view_data['monday'][0]["lunch"]);
+        $Dinner_M = ucfirst($this->view_data['monday'][0]["dinner"]);
+        $Breakfast_T = ucfirst($this->view_data['tuesday'][0]["breakfast"]);
+        $Lunch_T = ucfirst($this->view_data['tuesday'][0]["lunch"]);
+        $Dinner_T = ucfirst($this->view_data['tuesday'][0]["dinner"]);
+        $Breakfast_W = ucfirst($this->view_data['wednesday'][0]["breakfast"]);
+        $Lunch_W = ucfirst($this->view_data['wednesday'][0]["lunch"]);
+        $Dinner_W = ucfirst($this->view_data['wednesday'][0]["dinner"]);
+        $Breakfast_TH = ucfirst($this->view_data['thursday'][0]["breakfast"]);
+        $Lunch_TH = ucfirst($this->view_data['thursday'][0]["lunch"]);
+        $Dinner_TH = ucfirst($this->view_data['thursday'][0]["dinner"]);
+        $Breakfast_F = ucfirst($this->view_data['friday'][0]["breakfast"]);
+        $Lunch_F = ucfirst($this->view_data['friday'][0]["lunch"]);
+        $Dinner_F = ucfirst($this->view_data['friday'][0]["dinner"]);
+        $Breakfast_SA = ucfirst($this->view_data['saturday'][0]["breakfast"]);
+        $Lunch_SA = ucfirst($this->view_data['saturday'][0]["lunch"]);
+        $Dinner_SA = ucfirst($this->view_data['saturday'][0]["dinner"]);
+        $Breakfast_SU = ucfirst($this->view_data['sunday'][0]["breakfast"]);
+        $Lunch_SU = ucfirst($this->view_data['sunday'][0]["lunch"]);
+        $Dinner_SU = ucfirst($this->view_data['sunday'][0]["dinner"]);
+
+        $pdf->Cell(0  ,2,'Patient Name: '.$patient_name,0,1,'L');
+        $pdf->Cell(0  ,3,'',0,1);
+        $pdf->Cell(0  ,2,'Monday :',0,1);
+        $pdf->Cell(0  ,2,'Break Fast: '.$Breakfast_M,0,1,'C');
+        $pdf->Cell(0  ,2,'Lunch: '.$Lunch_M,0,1,'C');
+        $pdf->Cell(0  ,1,'Dinner: '.$Dinner_M,0,1,'C');
+        $pdf->Cell(0  ,1,'____________________________',0,1,'C');
+        $pdf->Cell(0  ,2,'Tuesday :',0,1);
+        $pdf->Cell(0  ,2,'Break Fast: '.$Breakfast_T,0,1,'C');
+        $pdf->Cell(0  ,2,'Lunch: '.$Lunch_T,0,1,'C');
+        $pdf->Cell(0  ,1,'Dinner: '.$Dinner_T,0,1,'C');
+        $pdf->Cell(0  ,1,'____________________________',0,1,'C');
+        $pdf->Cell(0  ,2,'Wednesday :',0,1);
+        $pdf->Cell(0  ,2,'Break Fast: '.$Breakfast_W,0,1,'C');
+        $pdf->Cell(0  ,2,'Lunch: '.$Lunch_W,0,1,'C');
+        $pdf->Cell(0  ,1,'Dinner: '.$Dinner_W,0,1,'C');
+        $pdf->Cell(0  ,1,'____________________________',0,1,'C');
+        $pdf->Cell(0  ,2,'Thursday :',0,1);
+        $pdf->Cell(0  ,2,'Break Fast: '.$Breakfast_TH,0,1,'C');
+        $pdf->Cell(0  ,2,'Lunch: '.$Lunch_TH,0,1,'C');
+        $pdf->Cell(0  ,1,'Dinner: '.$Dinner_TH,0,1,'C');
+        $pdf->Cell(0  ,1,'____________________________',0,1,'C');
+        $pdf->Cell(0  ,2,'Friday :',0,1);
+        $pdf->Cell(0  ,2,'Break Fast: '.$Breakfast_F,0,1,'C');
+        $pdf->Cell(0  ,2,'Lunch: '.$Lunch_F,0,1,'C');
+        $pdf->Cell(0  ,1,'Dinner: '.$Dinner_F,0,1,'C');
+        $pdf->Cell(0  ,1,'____________________________',0,1,'C');
+        $pdf->Cell(0  ,2,'Saturday :',0,1);
+        $pdf->Cell(0  ,2,'Break Fast: '.$Breakfast_SA,0,1,'C');
+        $pdf->Cell(0  ,2,'Lunch: '.$Lunch_SA,0,1,'C');
+        $pdf->Cell(0  ,1,'Dinner: '.$Dinner_SA,0,1,'C');
+        $pdf->Cell(0  ,1,'____________________________',0,1,'C');
+        $pdf->Cell(0  ,2,'Sunday :',0,1);
+        $pdf->Cell(0  ,2,'Break Fast: '.$Breakfast_SU,0,1,'C');
+        $pdf->Cell(0  ,2,'Lunch: '.$Lunch_SU,0,1,'C');
+        $pdf->Cell(0  ,1,'Dinner: '.$Dinner_SU,0,1,'C');
+        $pdf->Cell(0  ,1,'____________________________',0,1,'C');
+        $pdf->Cell(0  ,3,'',0,1);
+        $pdf->Cell(0  ,2,'Nutritionist Name: '.$Nutritionist_fn.' '.$Nutritionist_mn.' '.$Nutritionist_ln,0,1,'L');
+        $convert = new DateTime($this->view_data['dietPlanView'][0]["created_at"]); //create datetime object with received data
+        $date = $convert->format('M d, Y'); 
+        $pdf->Cell(0  ,3,"Date: ".$date,0,1,'L');
+        $pdf->Cell(0,3,'- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -',0,1,'C');
+		$pdf->Output();
+}
+
+?>

@@ -17,6 +17,7 @@ class dietManagementController extends Controller{
 	public function dietPlanView($id){
 		$this->model('dietManagement');
 		$this->view('dietManagement'.DIRECTORY_SEPARATOR.'dietPlanView',[
+			'dietReportData'=>$this->model->dietReport($id),
 			'dietPlanView'=>$this->model->dietPlanViewInfo($id),
 			'setDate'=>$this->model->getIdDate($id),
 			'monday' => $this->model->getDietDay("diet_monday",$id),
@@ -98,7 +99,26 @@ class dietManagementController extends Controller{
 			}
 		}
 	}*/
+	
+	function dietReport($id){
+		$this->model('dietManagement');
+		$this->view('dietManagement'.DIRECTORY_SEPARATOR.'dietReport',[
+			'dietReportData'=>$this->model->dietReport($id),
+			'dietPlanView'=>$this->model->dietPlanViewInfo($id),
+			'monday' => $this->model->getDietDay("diet_monday",$id),
+			'tuesday' => $this->model->getDietDay("diet_tuesday",$id),
+			'wednesday' => $this->model->getDietDay("diet_wednesday",$id),
+			'thursday' => $this->model->getDietDay("diet_thursday",$id),
+			'friday' => $this->model->getDietDay("diet_friday",$id),
+			'saturday' => $this->model->getDietDay("diet_saturday",$id),
+			'sunday' => $this->model->getDietDay("diet_sunday",$id)
+			]);
+		$this->view->page_title = 'Diet Report';
+		$this->view->render();
+	}
 
 }
+
+	
 
 ?>
