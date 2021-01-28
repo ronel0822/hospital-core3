@@ -11,7 +11,9 @@ class medicalRecordsController extends Controller{
 
 	function patientRecords($id){
 		$this->model('medicalRecords');
-		$this->view('medicalRecords'.DIRECTORY_SEPARATOR.'medRecordsView',['medView'=>$this->model->medicalRecordsView($id)]);
+		$this->view('medicalRecords'.DIRECTORY_SEPARATOR.'medRecordsView',[
+			'medView'=>$this->model->medicalRecordsView($id),
+			'medicalRecords'=>$this->model->getMedicalRecords()]);
 		$this->view->page_title = 'Records view';
 		$this->view->render();
 	}

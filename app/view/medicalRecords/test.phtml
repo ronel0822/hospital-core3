@@ -1,0 +1,177 @@
+<!-- HMS Header-->
+<?php include VIEW . 'header.phtml'; ?>
+
+
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" id="content">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+
+            <!--- Title to ng page na pinasok niyo -->
+            <h1 class="m-0">MEDICAL RECORDS</h1>
+
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <!-- Dito niyo lagay kung nasaang page kayo. -->
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Medical Records </li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+      <a href="/medicalRecords/medRecords" button class="btn btn-primary text-white"  style="float:right; margin-left:5px">BACK</a>
+            <a href="/medicalRecords/medRecordsPdf/" target="_blank" class="btn btn-danger" style="float:right;"><i class="fas fa-file-pdf"> PDF</i></a>
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content" >
+        <div class="row">
+          <div class="col-sm-6">
+            <h4>Patient Name: <strong><?php echo $this->view_data['medView'][0]['patient_fullname'] ?></strong>
+            </h4>
+          </div>
+          <div class="col">
+          <div class="row">
+            <div class="col"></div>
+            <div class="col">
+              <h4>Schedule:
+                <strong>
+                  <?php
+                  foreach ($this->view_data['medicalRecords'] as $row) {
+                    $convert = new DateTime($row['apt_sched_date']); //create datetime object with received data
+                      $date = $convert->format('M d, Y');
+                        echo "<strong>$date</strong> | "; 
+                    $convert1 = new DateTime($row['apt_sched_time']);
+                      $time = $convert->format('h:i:s A');
+                        echo "<strong>$time</strong>";
+                  }
+                  ?>
+                </strong>
+              </h4>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-sm-6">
+            <medium>Contact No:<strong>&nbsp;<?php echo $this->view_data['medView'][0]['patient_mobileno']; ?></strong></medium>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-6">
+            <h5>Address:</h5>
+              <strong><?php echo $this->view_data['medView'][0]['patient_fullname']; ?></strong>
+          </div>
+          <h5>Birthdate: 
+            <strong>
+              <?php
+                $convert = new DateTime($row['patient_birthdate']); //create datetime object with received data
+                            $date = $convert->format('M d, Y');
+                            echo "<strong>$date</strong> ";
+              ?>
+            </strong>
+          </h5>
+          <h5>Citizenship:
+            <strong>
+              <?php echo $row['patient_citizenship']; ?>
+            </strong>
+          </h5>
+          <h5>Gender:
+            <strong>
+              <?php echo $row['patient_gender']?>
+            </strong>
+          </h5>
+          <h5>Civil Status:
+            <strong>
+              <?php echo $row['patient_civilstatus']; ?>
+            </strong>
+          </h5>
+          <div style ="height:10px;" class="bg-dark"></div>
+          <h4>Hospital:
+            <strong>
+              <?php 
+                echo $row['patient_prev_hospital'];
+              ?>
+            </strong>
+          </h4>
+          <div class="row">
+            <div class="col">
+              <p>Visit:
+                <?php 
+                  $convert = new DateTime($row['apt_patient_lastvisit']); //create datetime object with received data
+                            $date = $convert->format('M d, Y');
+                            echo "<strong>$date</strong> ";
+                ?>
+              </p>
+            </div>
+            <div class="col">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h4>Health Insurance:
+                <strong>
+                  <?php 
+                    echo $row['patient_health_insurance'];
+                  ?>
+                </strong>
+              </h4>
+            </div>
+            <div class="col">
+              <h4>Philhealth:
+                <strong>
+                  <?php 
+                    echo $row['patient_philhealth'];
+                  ?>
+                </strong>
+              </h4>
+            </div>
+          </div>
+          <div style ="height:10px;" class="bg-dark"></div>
+            <h4>Doctor:
+              <strong>
+                <?php 
+                  echo $row['apt_doctors_name'];
+                ?>
+              </strong>
+            </h4>
+            <h4>Patient Disorder:
+              <strong>
+                <?php 
+                  echo $row['patient_disorder'];
+                ?>
+              </strong>
+            </h4>
+            <h4>Cause:
+              <strong>
+                <?php echo $row['apt_sched_cause'];?>
+              </strong>
+            </h4>
+            <h4>Remarks:
+              <strong>
+                <?php echo $row['apt_remarks'];?>
+              </strong>
+            </h4>
+            
+            <div style="height:auto;" class="text-light bg-dark"><h4>&nbsp;Emergency Contact</h4></div>
+            <?php 
+              echo "<h4><strong>&emsp;".$row['patient_contact1']."<br>&emsp;".
+                $row['patient_contact2']."</strong></h4>";
+            ?>
+          
+        </div> 
+  </div>
+       
+
+    </section>
+    <!-- /.content -->
+  </div>
+
+
+<?php include VIEW . 'footer.phtml'; ?>
